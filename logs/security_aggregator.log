@@ -1171,3 +1171,85 @@ TOTAL              | 7     | 101   | 13    | 5     | 74    | 229
 2026-03-09 22:53:10 | INFO     | security_aggregator | [SKIP] 이미 존재하는 기사 (중복): New Chrome Vulnerability Let Malicious Extensions Escalate Privileges via Gemini Panel
 2026-03-09 22:53:10 | INFO     | security_aggregator | 
 [Processing] TheHackerNews - ⚡ Weekly Recap: SD-WAN 0-Day, ...
+2026-03-09 22:53:12 | INFO     | security_aggregator | [SKIP] 이미 존재하는 기사 (중복): ⚡ Weekly Recap: SD-WAN 0-Day, Critical CVEs, Telegram Probe, Smart TV Proxy SDK and More
+2026-03-09 22:53:12 | INFO     | security_aggregator | 
+[Processing] TheHackerNews - APT28 Tied to CVE-2026-21513 M...
+2026-03-09 22:53:12 | INFO     | security_aggregator | [SKIP] 이미 존재하는 기사 (중복): APT28 Tied to CVE-2026-21513 MSHTML 0-Day Exploited Before Feb 2026 Patch Tuesday
+2026-03-09 22:53:12 | INFO     | security_aggregator | 
+[Processing] TheHackerNews - ScarCruft Uses Zoho WorkDrive ...
+2026-03-09 22:53:14 | INFO     | security_aggregator | [SKIP] 이미 존재하는 기사 (중복): ScarCruft Uses Zoho WorkDrive and USB Malware to Breach Air-Gapped Networks
+2026-03-09 22:53:14 | INFO     | security_aggregator | 
+[Processing] BleepingComputer - EU court adviser says banks mu...
+2026-03-09 22:53:16 | INFO     | security_aggregator | [SKIP] 이미 존재하는 기사 (중복): EU court adviser says banks must immediately refund phishing victims
+2026-03-09 22:53:16 | INFO     | security_aggregator | 
+[Processing] BleepingComputer - Hackers abuse .arpa DNS and ip...
+2026-03-09 22:53:17 | INFO     | security_aggregator | [SKIP] 이미 존재하는 기사 (중복): Hackers abuse .arpa DNS and ipv6 to evade phishing defenses
+2026-03-09 22:53:17 | INFO     | security_aggregator | 
+[Processing] BleepingComputer - Termite ransomware breaches li...
+2026-03-09 22:53:21 | INFO     | security_aggregator | [SKIP] 이미 존재하는 기사 (중복): Termite ransomware breaches linked to ClickFix CastleRAT attacks
+2026-03-09 22:53:21 | INFO     | security_aggregator | 
+[Processing] BleepingComputer - CISA warns feds to patch iOS f...
+2026-03-09 22:53:24 | INFO     | security_aggregator | [SKIP] 이미 존재하는 기사 (중복): CISA warns feds to patch iOS flaws exploited in crypto-theft attacks
+2026-03-09 22:53:24 | INFO     | security_aggregator | 
+[Processing] BleepingComputer - Chinese state hackers target t...
+2026-03-09 22:53:27 | INFO     | security_aggregator | [SKIP] 이미 존재하는 기사 (중복): Chinese state hackers target telcos with new malware toolkit
+2026-03-09 22:53:27 | INFO     | security_aggregator | 
+[Processing] BleepingComputer - Bing AI promoted fake OpenClaw...
+2026-03-09 22:53:33 | INFO     | security_aggregator | [SKIP] 이미 존재하는 기사 (중복): Bing AI promoted fake OpenClaw GitHub repo pushing info-stealing malware
+2026-03-09 22:53:33 | INFO     | security_aggregator | 
+[Processing] BleepingComputer - WordPress membership plugin bu...
+2026-03-09 22:53:37 | INFO     | security_aggregator | [SKIP] 이미 존재하는 기사 (중복): WordPress membership plugin bug exploited to create admin accounts
+2026-03-09 22:53:37 | INFO     | security_aggregator | 
+[2026-03-09 22:53:37.015814] 기사 처리(Consumer) 스레드 종료. (총 28건 처리)
+2026-03-09 22:53:37 | INFO     | security_aggregator | [System] 모든 Consumer 스레드 종료 완료
+2026-03-09 22:53:37 | INFO     | security_aggregator | 
+==================================================================
+Source             | New   | Dup   | Old   | Err   | Ign   | Tot  
+------------------------------------------------------------------
+KISA 가이드라인    | 0     | 0     | 0     | 1     | 0     | 0    
+보호나라 가이드라인 | 0     | 0     | 0     | 1     | 0     | 0    
+NCSC               | 0     | 0     | 0     | 1     | 0     | 0    
+보호나라           | 0     | 0     | 0     | 1     | 0     | 0    
+KRCERT             | 0     | 0     | 0     | 1     | 0     | 0    
+보안뉴스           | 0     | 20    | 0     | 0     | 0     | 30   
+데일리시큐         | 0     | 20    | 0     | 0     | 0     | 20   
+SK 쉴더스          | 0     | 3     | 0     | 0     | 0     | 27   
+안랩 ASEC          | 0     | 6     | 0     | 0     | 0     | 6    
+이글루코퍼레이션   | 0     | 8     | 13    | 0     | 0     | 21   
+키워드 기반 뉴스   | 51    | 0     | 0     | 0     | 73    | 124  
+------------------------------------------------------------------
+TOTAL              | 51    | 57    | 13    | 5     | 73    | 228  
+==================================================================
+
+2026-03-09 22:53:37 | INFO     | security_aggregator | [System] Slack으로 실행 결과 리포트를 전송했습니다.
+2026-03-09 22:53:37 | INFO     | security_aggregator | [2026-03-09 22:53:37.017926] 정기 크롤링 작업 전체 종료.
+
+2026-03-09 22:57:28 | INFO     | security_aggregator | === Security News Aggregator v2.1 Started ===
+2026-03-09 22:57:28 | INFO     | security_aggregator | >>> URL 캐시 동기화 시작 <<<
+2026-03-09 22:58:10 | INFO     | security_aggregator | >>> 작업 실행 시작 <<<
+2026-03-09 22:58:10 | INFO     | security_aggregator | 정기 크롤링 작업 시작 (Producer-Consumer Pattern)...
+2026-03-09 22:58:10 | INFO     | security_aggregator | [Phase 0-Async] 90일 정리 시작: 18aa4d68041448779c25...
+2026-03-09 22:58:10 | INFO     | security_aggregator | Phase 0: 90일 정리 비동기 실행 시작 (메인 작업 계속 진행)
+2026-03-09 22:58:10 | INFO     | security_aggregator | [Consumer #1] 시작 - 큐 모니터링 중...
+2026-03-09 22:58:10 | INFO     | security_aggregator | [System] 1개의 Consumer 스레드 시작 (즉시 처리 모드)
+2026-03-09 22:58:10 | INFO     | security_aggregator | 
+[2026-03-09 22:58:10.251639] 기사 처리(Consumer) 스레드 #1 시작...
+2026-03-09 22:58:10 | INFO     | security_aggregator | 
+>>> Phase 1: 모든 소스에서 기사 스캔 및 수집 중 (병렬 실행) <<<
+2026-03-09 22:58:10 | INFO     | security_aggregator | [DEBUG #1] 초기 큐 크기: 0
+2026-03-09 22:58:10 | INFO     | security_aggregator | >>> [중요] 큐에 추가된 기사는 즉시 Consumer가 처리합니다. <<<
+2026-03-09 22:58:10 | ERROR    | security_aggregator | [CRITICAL] KISA 가이드라인 실행 중 오류 발생: [Errno 30] Read-only file system: '/temp_downloads_kisa'
+2026-03-09 22:58:10 | INFO     | security_aggregator | [Scan] Completed 1/11: KISA 가이드라인
+2026-03-09 22:58:10 | ERROR    | security_aggregator | [CRITICAL] 보호나라 가이드라인 실행 중 오류 발생: [Errno 30] Read-only file system: '/temp_downloads_boho'
+2026-03-09 22:58:10 | INFO     | security_aggregator | [Scan] Completed 2/11: 보호나라 가이드라인
+2026-03-09 22:58:10 | ERROR    | security_aggregator | [CRITICAL] NCSC 실행 중 오류 발생: [Errno 30] Read-only file system: '/temp_downloads_ncsc'
+2026-03-09 22:58:10 | INFO     | security_aggregator | [Scan] Completed 3/11: NCSC
+2026-03-09 22:58:10 | ERROR    | security_aggregator | [CRITICAL] 보호나라 실행 중 오류 발생: [Errno 30] Read-only file system: '/temp_downloads_notice'
+2026-03-09 22:58:10 | INFO     | security_aggregator | [Scan] Completed 4/11: 보호나라
+2026-03-09 22:58:10 | ERROR    | security_aggregator | [CRITICAL] KRCERT 실행 중 오류 발생: [Errno 30] Read-only file system: '/temp_downloads_krcert'
+2026-03-09 22:58:10 | INFO     | security_aggregator | [Scan] Completed 5/11: KRCERT
+2026-03-09 22:58:10 | INFO     | security_aggregator | [Scan] Completed 6/11: 보안뉴스
+2026-03-09 22:58:10 | INFO     | security_aggregator | [Scan] Completed 7/11: 데일리시큐
+2026-03-09 22:58:12 | INFO     | security_aggregator | [Phase 0-Async] 90일 정리 완료: 18aa4d68041448779c25...
+2026-03-09 22:59:28 | INFO     | security_aggregator | [Scan] Completed 8/11: SK 쉴더스
+2026-03-09 22:59:28 | INFO     | security_aggregator | [Scan] Completed 9/11: 안랩 ASEC
