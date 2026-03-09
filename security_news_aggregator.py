@@ -60,6 +60,21 @@ class QueueCollector:
     def update_settings(self, enable_notion, enable_tistory, notion_database_id):
         pass # 설정은 무시하거나 필요시 저장
 
+    def add_article(self, article_data):
+        """
+        크롤러 호환성을 위한 메서드 (publish_article의 alias)
+        """
+        return self.publish_article(
+            title=article_data.get('title'),
+            content=article_data.get('content', ''),
+            url=article_data.get('url'),
+            date=article_data.get('date'),
+            category=article_data.get('category', ''),
+            details=article_data.get('details', ''),
+            database_id=article_data.get('database_id'),
+            files=article_data.get('files')
+        )
+
     def publish_article(self, title, content, url, date, category, details, database_id=None, files=None):
         """
         크롤러가 호출하는 메서드. 실제 발행 대신 큐에 작업 객체를 넣습니다.
