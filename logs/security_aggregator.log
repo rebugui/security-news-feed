@@ -2476,3 +2476,34 @@ TOTAL              | 9     | 100   | 13    | 5     | 71    | 227
 [Processing] TheHackerNews - APT28 Uses BEARDSHELL and COVE...
 2026-03-10 21:02:06 | INFO     | security_aggregator | [번역] 영문 제목 번역 완료
 2026-03-10 21:02:06 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-10 21:19:39 | ERROR    | security_aggregator | [LLM-ERROR] 2단계 생성 실패, 기존 방식으로 대체: HTTPSConnectionPool(host='api.z.ai', port=443): Read timed out. (read timeout=120)
+2026-03-10 21:26:27 | INFO     | security_aggregator | 
+[Processing] BleepingComputer - CISA: Recently patched Ivanti ...
+2026-03-10 21:28:04 | INFO     | security_aggregator | [번역] 영문 제목 번역 완료
+2026-03-10 21:28:04 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-10 21:35:27 | INFO     | security_aggregator | [LLM] 본문 생성 완료 - 요약: 251자, 상세: 5546자
+2026-03-10 21:35:34 | INFO     | security_aggregator | 
+[2026-03-10 21:35:34.997676] 기사 처리(Consumer) 스레드 종료. (총 3건 처리)
+2026-03-10 21:35:34 | INFO     | security_aggregator | [System] 모든 Consumer 스레드 종료 완료
+2026-03-10 21:35:34 | INFO     | security_aggregator | 
+==================================================================
+Source             | New   | Dup   | Old   | Err   | Ign   | Tot  
+------------------------------------------------------------------
+KISA 가이드라인    | 0     | 0     | 0     | 1     | 0     | 0    
+보호나라 가이드라인 | 0     | 0     | 0     | 1     | 0     | 0    
+NCSC               | 0     | 0     | 0     | 1     | 0     | 0    
+보호나라           | 0     | 0     | 0     | 1     | 0     | 0    
+KRCERT             | 0     | 0     | 0     | 1     | 0     | 0    
+보안뉴스           | 0     | 20    | 0     | 0     | 0     | 30   
+데일리시큐         | 0     | 20    | 0     | 0     | 0     | 20   
+SK 쉴더스          | 0     | 3     | 0     | 0     | 0     | 27   
+안랩 ASEC          | 0     | 6     | 0     | 0     | 0     | 6    
+이글루코퍼레이션   | 0     | 8     | 13    | 0     | 0     | 21   
+키워드 기반 뉴스   | 10    | 45    | 0     | 0     | 68    | 123  
+------------------------------------------------------------------
+TOTAL              | 10    | 102   | 13    | 5     | 68    | 227  
+==================================================================
+
+2026-03-10 21:35:34 | INFO     | security_aggregator | [System] Slack으로 실행 결과 리포트를 전송했습니다.
+2026-03-10 21:35:34 | INFO     | security_aggregator | [2026-03-10 21:35:34.999159] 정기 크롤링 작업 전체 종료.
+
