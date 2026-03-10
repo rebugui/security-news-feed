@@ -2541,3 +2541,29 @@ TOTAL              | 10    | 102   | 13    | 5     | 68    | 227
 >>> 모든 크롤러 스캔 완료. 남은 큐 항목 처리 중... <<<
 2026-03-10 22:37:05 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
 2026-03-10 22:44:52 | ERROR    | security_aggregator | [LLM-ERROR] 2단계 생성 실패, 기존 방식으로 대체: 429 Client Error: Too Many Requests for url: https://api.z.ai/api/coding/paas/v4/chat/completions
+2026-03-10 22:58:14 | ERROR    | security_aggregator | [LLM-ERROR] 기존 방식도 실패 (원본 사용): 429 Client Error: Too Many Requests for url: https://api.z.ai/api/coding/paas/v4/chat/completions
+2026-03-10 22:58:17 | INFO     | security_aggregator | 
+[2026-03-10 22:58:17.604515] 기사 처리(Consumer) 스레드 종료. (총 1건 처리)
+2026-03-10 22:58:17 | INFO     | security_aggregator | [System] 모든 Consumer 스레드 종료 완료
+2026-03-10 22:58:17 | INFO     | security_aggregator | 
+==================================================================
+Source             | New   | Dup   | Old   | Err   | Ign   | Tot  
+------------------------------------------------------------------
+KISA 가이드라인    | 0     | 0     | 0     | 1     | 0     | 0    
+보호나라 가이드라인 | 0     | 0     | 0     | 1     | 0     | 0    
+NCSC               | 0     | 0     | 0     | 1     | 0     | 0    
+보호나라           | 0     | 0     | 0     | 1     | 0     | 0    
+KRCERT             | 0     | 0     | 0     | 1     | 0     | 0    
+보안뉴스           | 0     | 20    | 0     | 0     | 0     | 30   
+데일리시큐         | 0     | 20    | 0     | 0     | 0     | 20   
+SK 쉴더스          | 0     | 3     | 0     | 0     | 0     | 27   
+안랩 ASEC          | 0     | 6     | 0     | 0     | 0     | 6    
+이글루코퍼레이션   | 0     | 8     | 13    | 0     | 0     | 21   
+키워드 기반 뉴스   | 8     | 48    | 0     | 0     | 66    | 122  
+------------------------------------------------------------------
+TOTAL              | 8     | 105   | 13    | 5     | 66    | 226  
+==================================================================
+
+2026-03-10 22:58:17 | INFO     | security_aggregator | [System] Slack으로 실행 결과 리포트를 전송했습니다.
+2026-03-10 22:58:17 | INFO     | security_aggregator | [2026-03-10 22:58:17.606614] 정기 크롤링 작업 전체 종료.
+
