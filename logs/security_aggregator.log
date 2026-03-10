@@ -2471,3 +2471,8 @@ TOTAL              | 9     | 100   | 13    | 5     | 71    | 227
 >>> 모든 크롤러 스캔 완료. 남은 큐 항목 처리 중... <<<
 2026-03-10 20:57:38 | INFO     | security_aggregator | [번역] 영문 제목 번역 완료
 2026-03-10 20:57:38 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-10 21:01:15 | INFO     | security_aggregator | [LLM] 본문 생성 완료 - 요약: 226자, 상세: 5532자
+2026-03-10 21:01:21 | INFO     | security_aggregator | 
+[Processing] TheHackerNews - APT28 Uses BEARDSHELL and COVE...
+2026-03-10 21:02:06 | INFO     | security_aggregator | [번역] 영문 제목 번역 완료
+2026-03-10 21:02:06 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
