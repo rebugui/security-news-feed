@@ -2570,3 +2570,58 @@ TOTAL              | 8     | 105   | 13    | 5     | 66    | 226
 2026-03-10 23:02:18 | INFO     | security_aggregator | 
 [2026-03-10 23:02:18.125119] 키워드 통계 분석 시작...
 2026-03-10 23:02:23 | INFO     | security_aggregator | [2026-03-10 23:02:23.261694] 키워드 통계 분석 완료.
+2026-03-10 23:58:27 | INFO     | security_aggregator | 정기 크롤링 작업 시작 (Producer-Consumer Pattern)...
+2026-03-10 23:58:27 | INFO     | security_aggregator | [Phase 0-Async] 90일 정리 시작: 18aa4d68041448779c25...
+2026-03-10 23:58:27 | INFO     | security_aggregator | Phase 0: 90일 정리 비동기 실행 시작 (메인 작업 계속 진행)
+2026-03-10 23:58:27 | INFO     | security_aggregator | [Consumer #1] 시작 - 큐 모니터링 중...
+2026-03-10 23:58:27 | INFO     | security_aggregator | [System] 1개의 Consumer 스레드 시작 (즉시 처리 모드)
+2026-03-10 23:58:27 | INFO     | security_aggregator | 
+[2026-03-10 23:58:27.397858] 기사 처리(Consumer) 스레드 #1 시작...
+2026-03-10 23:58:27 | INFO     | security_aggregator | 
+>>> Phase 1: 모든 소스에서 기사 스캔 및 수집 중 (병렬 실행) <<<
+2026-03-10 23:58:27 | INFO     | security_aggregator | [DEBUG #1] 초기 큐 크기: 0
+2026-03-10 23:58:27 | INFO     | security_aggregator | >>> [중요] 큐에 추가된 기사는 즉시 Consumer가 처리합니다. <<<
+2026-03-10 23:58:27 | ERROR    | security_aggregator | [CRITICAL] KISA 가이드라인 실행 중 오류 발생: [Errno 30] Read-only file system: '/temp_downloads_kisa'
+2026-03-10 23:58:27 | INFO     | security_aggregator | [Scan] Completed 1/11: KISA 가이드라인
+2026-03-10 23:58:27 | ERROR    | security_aggregator | [CRITICAL] 보호나라 가이드라인 실행 중 오류 발생: [Errno 30] Read-only file system: '/temp_downloads_boho'
+2026-03-10 23:58:27 | INFO     | security_aggregator | [Scan] Completed 2/11: 보호나라 가이드라인
+2026-03-10 23:58:27 | ERROR    | security_aggregator | [CRITICAL] NCSC 실행 중 오류 발생: [Errno 30] Read-only file system: '/temp_downloads_ncsc'
+2026-03-10 23:58:27 | INFO     | security_aggregator | [Scan] Completed 3/11: NCSC
+2026-03-10 23:58:27 | ERROR    | security_aggregator | [CRITICAL] 보호나라 실행 중 오류 발생: [Errno 30] Read-only file system: '/temp_downloads_notice'
+2026-03-10 23:58:27 | INFO     | security_aggregator | [Scan] Completed 4/11: 보호나라
+2026-03-10 23:58:27 | ERROR    | security_aggregator | [CRITICAL] KRCERT 실행 중 오류 발생: [Errno 30] Read-only file system: '/temp_downloads_krcert'
+2026-03-10 23:58:27 | INFO     | security_aggregator | [Scan] Completed 5/11: KRCERT
+2026-03-10 23:58:27 | INFO     | security_aggregator | [Scan] Completed 6/11: 보안뉴스
+2026-03-10 23:58:27 | INFO     | security_aggregator | [Scan] Completed 7/11: 데일리시큐
+2026-03-10 23:58:29 | INFO     | security_aggregator | [Phase 0-Async] 90일 정리 완료: 18aa4d68041448779c25...
+2026-03-10 23:59:41 | INFO     | security_aggregator | [Scan] Completed 8/11: SK 쉴더스
+2026-03-10 23:59:42 | INFO     | security_aggregator | [Scan] Completed 9/11: 안랩 ASEC
+2026-03-10 23:59:47 | INFO     | security_aggregator | [Scan] Completed 10/11: 이글루코퍼레이션
+2026-03-10 23:59:50 | INFO     | security_aggregator | [Scan] Completed 11/11: 키워드 기반 뉴스
+2026-03-10 23:59:50 | INFO     | security_aggregator | 
+>>> 모든 크롤러 스캔 완료. 남은 큐 항목 처리 중... <<<
+2026-03-10 23:59:51 | INFO     | security_aggregator | 
+[2026-03-10 23:59:51.580152] 기사 처리(Consumer) 스레드 종료. (총 0건 처리)
+2026-03-10 23:59:51 | INFO     | security_aggregator | [System] 모든 Consumer 스레드 종료 완료
+2026-03-10 23:59:51 | INFO     | security_aggregator | 
+==================================================================
+Source             | New   | Dup   | Old   | Err   | Ign   | Tot  
+------------------------------------------------------------------
+KISA 가이드라인    | 0     | 0     | 0     | 1     | 0     | 0    
+보호나라 가이드라인 | 0     | 0     | 0     | 1     | 0     | 0    
+NCSC               | 0     | 0     | 0     | 1     | 0     | 0    
+보호나라           | 0     | 0     | 0     | 1     | 0     | 0    
+KRCERT             | 0     | 0     | 0     | 1     | 0     | 0    
+보안뉴스           | 0     | 20    | 0     | 0     | 0     | 30   
+데일리시큐         | 0     | 20    | 0     | 0     | 0     | 20   
+SK 쉴더스          | 0     | 3     | 0     | 0     | 0     | 27   
+안랩 ASEC          | 0     | 6     | 0     | 0     | 0     | 6    
+이글루코퍼레이션   | 0     | 8     | 13    | 0     | 0     | 21   
+키워드 기반 뉴스   | 7     | 48    | 0     | 0     | 68    | 123  
+------------------------------------------------------------------
+TOTAL              | 7     | 105   | 13    | 5     | 68    | 227  
+==================================================================
+
+2026-03-10 23:59:51 | INFO     | security_aggregator | [System] Slack으로 실행 결과 리포트를 전송했습니다.
+2026-03-10 23:59:51 | INFO     | security_aggregator | [2026-03-10 23:59:51.583069] 정기 크롤링 작업 전체 종료.
+
