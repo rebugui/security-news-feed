@@ -164,8 +164,10 @@ class SKShieldusCrawler(BaseCrawler):
                     seen_urls.add(article_url)
                     
                     # 날짜 처리
+                    # 날짜를 찾지 못하면 상세 페이지에서 다시 시도
                     if posting_date is None:
-                        posting_date = datetime.now()
+                        scan_old_count += 1
+                        continue
                     
                     if not self.is_recent(posting_date):
                         scan_old_count += 1
@@ -193,6 +195,29 @@ class SKShieldusCrawler(BaseCrawler):
                             
                             if detail_result.returncode == 0:
                                 detail_soup = BeautifulSoup(detail_result.stdout, 'html.parser')
+                                
+                                # 날짜를 찾지 못했다면 상세 페이지에서 다시 시도
+                                if posting_date is None:
+                                    detail_date_tag = (
+                                        detail_soup.select_one('.date') or
+                                        detail_soup.select_one('time') or
+                                        detail_soup.select_one('.post-date') or
+                                        detail_soup.select_one('.blog-date') or
+                                        detail_soup.select_one('[class*="date"]')
+                                    )
+                                    
+                                    if detail_date_tag:
+                                        date_text = detail_date_tag.get_text(strip=True).replace('.', '').replace(' ', '')
+                                        if len(date_text) >= 8:
+                                            try:
+                                                posting_date = datetime.strptime(date_text[:8], "%Y%m%d")
+                                            except ValueError:
+                                                pass
+                                
+                                # 그래도 날짜를 찾지 못했다면 제외
+                                if posting_date is None:
+                                    scan_old_count += 1
+                                    continue
                                 
                                 # 본문 추출
                                 content_selectors = [
