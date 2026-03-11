@@ -3920,3 +3920,195 @@ TOTAL              | 12    | 145   | 57    | 0     | 67    | 291
 2026-03-11 18:53:42 | INFO     | security_aggregator | [2026-03-11 18:53:42.570602] 내부 스케줄러가 시작되었습니다. (Loop Mode)
 2026-03-11 18:53:42 | INFO     | security_aggregator | 
 [2026-03-11 18:53:42.570770] 스케줄러 대기 모드 진입 (다음 실행 예정)...
+2026-03-11 19:00:00 | INFO     | security_aggregator | === Security News Aggregator v2.1 Started ===
+2026-03-11 19:00:00 | INFO     | security_aggregator | >>> URL 캐시 동기화 시작 <<<
+2026-03-11 19:00:39 | INFO     | security_aggregator | >>> 작업 실행 시작 <<<
+2026-03-11 19:00:39 | INFO     | security_aggregator | 정기 크롤링 작업 시작 (Producer-Consumer Pattern)...
+2026-03-11 19:00:39 | INFO     | security_aggregator | [Phase 0-Async] 90일 정리 시작: 18aa4d68041448779c25...
+2026-03-11 19:00:39 | INFO     | security_aggregator | Phase 0: 90일 정리 비동기 실행 시작 (메인 작업 계속 진행)
+2026-03-11 19:00:39 | INFO     | security_aggregator | [Consumer #1] 시작 - 큐 모니터링 중...
+2026-03-11 19:00:39 | INFO     | security_aggregator | [System] 1개의 Consumer 스레드 시작 (즉시 처리 모드)
+2026-03-11 19:00:39 | INFO     | security_aggregator | 
+[2026-03-11 19:00:39.585308] 기사 처리(Consumer) 스레드 #1 시작...
+2026-03-11 19:00:39 | INFO     | security_aggregator | 
+>>> Phase 1: 모든 소스에서 기사 스캔 및 수집 중 (병렬 실행) <<<
+2026-03-11 19:00:39 | INFO     | security_aggregator | [DEBUG #1] 초기 큐 크기: 0
+2026-03-11 19:00:39 | INFO     | security_aggregator | >>> [중요] 큐에 추가된 기사는 즉시 Consumer가 처리합니다. <<<
+2026-03-11 19:00:39 | INFO     | security_aggregator | [Scan] Completed 1/11: KISA 가이드라인
+2026-03-11 19:00:41 | INFO     | security_aggregator | [Phase 0-Async] 90일 정리 완료: 18aa4d68041448779c25...
+2026-03-11 19:01:43 | INFO     | security_aggregator | [Scan] Completed 2/11: 보호나라 가이드라인
+2026-03-11 19:01:53 | INFO     | security_aggregator | [Scan] Completed 3/11: NCSC
+2026-03-11 19:01:59 | INFO     | security_aggregator | 
+[Processing] 보호나라 - MS 3월 보안 위협에 따른 정기 보안 업데이트 권고...
+2026-03-11 19:01:59 | INFO     | security_aggregator | [Scan] Completed 4/11: 보호나라
+2026-03-11 19:02:00 | INFO     | security_aggregator | [Scan] Completed 5/11: KRCERT
+2026-03-11 19:02:00 | INFO     | security_aggregator | [Scan] Completed 6/11: 보안뉴스
+2026-03-11 19:02:00 | INFO     | security_aggregator | [Scan] Completed 7/11: 데일리시큐
+2026-03-11 19:02:01 | INFO     | security_aggregator | [Scan] Completed 8/11: SK 쉴더스
+2026-03-11 19:02:01 | INFO     | security_aggregator | [Scan] Completed 9/11: 안랩 ASEC
+2026-03-11 19:02:03 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-11 19:02:08 | INFO     | security_aggregator | [Scan] Completed 10/11: 이글루코퍼레이션
+2026-03-11 19:02:11 | INFO     | security_aggregator | [Scan] Completed 11/11: 키워드 기반 뉴스
+2026-03-11 19:02:11 | INFO     | security_aggregator | 
+>>> 모든 크롤러 스캔 완료. 남은 큐 항목 처리 중... <<<
+2026-03-11 19:06:20 | ERROR    | security_aggregator | [LLM-ERROR] 기존 방식도 실패 (원본 사용): 429 Client Error: Too Many Requests for url: https://api.z.ai/api/coding/paas/v4/chat/completions
+2026-03-11 19:06:20 | INFO     | security_aggregator | 
+[Processing] 보안뉴스 - 제14회 전자정부 정보보호 콘퍼런스 2026, 18일부...
+2026-03-11 19:06:20 | INFO     | security_aggregator | [SKIP] 이미 존재하는 기사 (중복): 제14회 전자정부 정보보호 콘퍼런스 2026, 18일부터 20일까지 킨텍스 개최
+2026-03-11 19:06:20 | INFO     | security_aggregator | 
+[Processing] TheHackerNews - UNC6426 Exploits nx npm Supply...
+2026-03-11 19:06:20 | INFO     | security_aggregator | [SKIP] 이미 존재하는 기사 (중복): UNC6426 Exploits nx npm Supply-Chain Attack to Gain AWS Admin Access in 72 Hours
+2026-03-11 19:06:20 | INFO     | security_aggregator | 
+[2026-03-11 19:06:20.655820] 기사 처리(Consumer) 스레드 종료. (총 5건 처리)
+2026-03-11 19:06:20 | INFO     | security_aggregator | [System] 모든 Consumer 스레드 종료 완료
+2026-03-11 19:06:20 | INFO     | security_aggregator | 
+==================================================================
+Source             | New   | Dup   | Old   | Err   | Ign   | Tot  
+------------------------------------------------------------------
+KISA 가이드라인    | 0     | 10    | 0     | 0     | 0     | 10   
+보호나라 가이드라인 | 0     | 11    | 0     | 0     | 0     | 11   
+NCSC               | 0     | 0     | 10    | 0     | 0     | 10   
+보호나라           | 2     | 8     | 4     | 0     | 0     | 14   
+KRCERT             | 1     | 12    | 7     | 0     | 0     | 20   
+보안뉴스           | 0     | 20    | 0     | 0     | 0     | 30   
+데일리시큐         | 0     | 20    | 0     | 0     | 0     | 20   
+SK 쉴더스          | 0     | 0     | 27    | 0     | 0     | 27   
+안랩 ASEC          | 0     | 6     | 0     | 0     | 0     | 6    
+이글루코퍼레이션   | 0     | 10    | 9     | 0     | 0     | 19   
+키워드 기반 뉴스   | 10    | 47    | 0     | 0     | 67    | 124  
+------------------------------------------------------------------
+TOTAL              | 13    | 144   | 57    | 0     | 67    | 291  
+==================================================================
+
+2026-03-11 19:06:20 | INFO     | security_aggregator | [System] Slack으로 실행 결과 리포트를 전송했습니다.
+2026-03-11 19:06:20 | INFO     | security_aggregator | [2026-03-11 19:06:20.656586] 정기 크롤링 작업 전체 종료.
+
+2026-03-11 19:08:29 | INFO     | security_aggregator | [LLM] 본문 생성 완료 - 요약: 182자, 상세: 5581자
+2026-03-11 19:08:31 | INFO     | security_aggregator | 
+[Processing] KRCERT - MS 3월 보안 위협에 따른 정기 보안 업데이트 권고...
+2026-03-11 19:08:33 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-11 19:12:16 | INFO     | security_aggregator | [LLM] 본문 생성 완료 - 요약: 289자, 상세: 5484자
+2026-03-11 19:12:16 | INFO     | security_aggregator | 
+[Processing] KRCERT 보안정보 - CVE-2025-29864 | 이스트소프트 알집 Mar...
+2026-03-11 19:12:16 | INFO     | security_aggregator | [SKIP] 오래된 기사 (90일 초과, 2025-12-01): CVE-2025-29864 | 이스트소프트 알집 Mark of the Web 우회 취약점
+2026-03-11 19:12:16 | INFO     | security_aggregator | 
+[Processing] KRCERT 보안정보 - CVE-2025-29866 | 태그프리 제품 부적절한 ...
+2026-03-11 19:12:16 | INFO     | security_aggregator | [SKIP] 오래된 기사 (90일 초과, 2025-07-31): CVE-2025-29866 | 태그프리 제품 부적절한 권한 검증 취약점
+2026-03-11 19:12:16 | INFO     | security_aggregator | 
+[Processing] KRCERT 보안정보 - CVE-2025-29865 | 태그프리 제품 파일 다운...
+2026-03-11 19:12:16 | INFO     | security_aggregator | [SKIP] 오래된 기사 (90일 초과, 2025-07-31): CVE-2025-29865 | 태그프리 제품 파일 다운로드 취약점
+2026-03-11 19:12:16 | INFO     | security_aggregator | 
+[Processing] KRCERT 보안정보 - CVE-2024-23843 | 지니언스 NAC SQL ...
+2026-03-11 19:12:16 | INFO     | security_aggregator | [SKIP] 오래된 기사 (90일 초과, 2024-11-05): CVE-2024-23843 | 지니언스 NAC SQL Injection 취약점
+2026-03-11 19:12:16 | INFO     | security_aggregator | 
+[Processing] KRCERT 보안정보 - CVE-2023-45801 | 나다텔 DVR 부적절한 ...
+2026-03-11 19:12:16 | INFO     | security_aggregator | [SKIP] 오래된 기사 (90일 초과, 2024-02-23): CVE-2023-45801 | 나다텔 DVR 부적절한 인증 취약점
+2026-03-11 19:12:16 | INFO     | security_aggregator | 
+[Processing] KRCERT 보안정보 - CVE-2023-45800 | 한비로 그룹웨어 SQL ...
+2026-03-11 19:12:16 | INFO     | security_aggregator | [SKIP] 오래된 기사 (90일 초과, 2024-02-23): CVE-2023-45800 | 한비로 그룹웨어 SQL Injection 취약점
+2026-03-11 19:12:16 | INFO     | security_aggregator | 
+[Processing] KRCERT 보안정보 - CVE-2023-45799 | 엠엘소프트 파일 다운로드...
+2026-03-11 19:12:16 | INFO     | security_aggregator | [SKIP] 오래된 기사 (90일 초과, 2024-02-23): CVE-2023-45799 | 엠엘소프트 파일 다운로드 및 실행 취약점
+2026-03-11 19:12:16 | INFO     | security_aggregator | 
+[Processing] TheHackerNews - Microsoft Patches 84 Flaws in ...
+2026-03-11 19:13:06 | INFO     | security_aggregator | [번역] 영문 제목 번역 완료
+2026-03-11 19:13:06 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-11 19:22:08 | INFO     | security_aggregator | [LLM] 본문 생성 완료 - 요약: 496자, 상세: 5162자
+2026-03-11 19:22:09 | INFO     | security_aggregator | 
+[2026-03-11 19:22:09.814576] 기사 처리(Consumer) 스레드 종료. (총 10건 처리)
+2026-03-11 19:22:09 | INFO     | security_aggregator | [System] 모든 Consumer 스레드 종료 완료
+2026-03-11 19:22:09 | INFO     | security_aggregator | 
+==================================================================
+Source             | New   | Dup   | Old   | Err   | Ign   | Tot  
+------------------------------------------------------------------
+KISA 가이드라인    | 0     | 10    | 0     | 0     | 0     | 10   
+보호나라 가이드라인 | 0     | 11    | 0     | 0     | 0     | 11   
+NCSC               | 0     | 0     | 10    | 0     | 0     | 10   
+보호나라           | 1     | 9     | 4     | 0     | 0     | 14   
+KRCERT             | 1     | 12    | 7     | 0     | 0     | 20   
+보안뉴스           | 0     | 20    | 0     | 0     | 0     | 30   
+데일리시큐         | 0     | 20    | 0     | 0     | 0     | 20   
+SK 쉴더스          | 0     | 0     | 27    | 0     | 0     | 27   
+안랩 ASEC          | 0     | 6     | 0     | 0     | 0     | 6    
+이글루코퍼레이션   | 0     | 10    | 9     | 0     | 0     | 19   
+키워드 기반 뉴스   | 9     | 48    | 0     | 0     | 67    | 124  
+------------------------------------------------------------------
+TOTAL              | 11    | 146   | 57    | 0     | 67    | 291  
+==================================================================
+
+2026-03-11 19:22:09 | INFO     | security_aggregator | [System] Slack으로 실행 결과 리포트를 전송했습니다.
+2026-03-11 19:22:09 | INFO     | security_aggregator | [2026-03-11 19:22:09.816682] 정기 크롤링 작업 전체 종료.
+
+2026-03-11 19:22:09 | INFO     | security_aggregator | [2026-03-11 19:22:09.817610] 내부 스케줄러가 시작되었습니다. (Loop Mode)
+2026-03-11 19:22:09 | INFO     | security_aggregator | 
+[2026-03-11 19:22:09.817776] 스케줄러 대기 모드 진입 (다음 실행 예정)...
+2026-03-11 19:51:07 | INFO     | security_aggregator | 정기 크롤링 작업 시작 (Producer-Consumer Pattern)...
+2026-03-11 19:51:07 | INFO     | security_aggregator | [Phase 0-Async] 90일 정리 시작: 18aa4d68041448779c25...
+2026-03-11 19:51:07 | INFO     | security_aggregator | Phase 0: 90일 정리 비동기 실행 시작 (메인 작업 계속 진행)
+2026-03-11 19:51:07 | INFO     | security_aggregator | [Consumer #1] 시작 - 큐 모니터링 중...
+2026-03-11 19:51:07 | INFO     | security_aggregator | [System] 1개의 Consumer 스레드 시작 (즉시 처리 모드)
+2026-03-11 19:51:07 | INFO     | security_aggregator | 
+[2026-03-11 19:51:07.907867] 기사 처리(Consumer) 스레드 #1 시작...
+2026-03-11 19:51:07 | INFO     | security_aggregator | 
+>>> Phase 1: 모든 소스에서 기사 스캔 및 수집 중 (병렬 실행) <<<
+2026-03-11 19:51:07 | INFO     | security_aggregator | [DEBUG #1] 초기 큐 크기: 0
+2026-03-11 19:51:07 | INFO     | security_aggregator | >>> [중요] 큐에 추가된 기사는 즉시 Consumer가 처리합니다. <<<
+2026-03-11 19:51:07 | ERROR    | security_aggregator | [CRITICAL] KISA 가이드라인 실행 중 오류 발생: [Errno 30] Read-only file system: '/temp_downloads_kisa'
+2026-03-11 19:51:07 | INFO     | security_aggregator | [Scan] Completed 1/11: KISA 가이드라인
+2026-03-11 19:51:07 | ERROR    | security_aggregator | [CRITICAL] 보호나라 가이드라인 실행 중 오류 발생: [Errno 30] Read-only file system: '/temp_downloads_boho'
+2026-03-11 19:51:07 | INFO     | security_aggregator | [Scan] Completed 2/11: 보호나라 가이드라인
+2026-03-11 19:51:07 | ERROR    | security_aggregator | [CRITICAL] NCSC 실행 중 오류 발생: [Errno 30] Read-only file system: '/temp_downloads_ncsc'
+2026-03-11 19:51:07 | INFO     | security_aggregator | [Scan] Completed 3/11: NCSC
+2026-03-11 19:51:07 | ERROR    | security_aggregator | [CRITICAL] 보호나라 실행 중 오류 발생: [Errno 30] Read-only file system: '/temp_downloads_notice'
+2026-03-11 19:51:07 | INFO     | security_aggregator | [Scan] Completed 4/11: 보호나라
+2026-03-11 19:51:07 | ERROR    | security_aggregator | [CRITICAL] KRCERT 실행 중 오류 발생: [Errno 30] Read-only file system: '/temp_downloads_krcert'
+2026-03-11 19:51:07 | INFO     | security_aggregator | [Scan] Completed 5/11: KRCERT
+2026-03-11 19:51:09 | INFO     | security_aggregator | [Phase 0-Async] 90일 정리 완료: 18aa4d68041448779c25...
+2026-03-11 19:51:55 | INFO     | security_aggregator | [Scan] Completed 6/11: 보안뉴스
+2026-03-11 19:51:58 | INFO     | security_aggregator | 
+[Processing] 데일리시큐 - 마이크로소프트 3월 보안 업데이트, 제로데이 2건 포함...
+2026-03-11 19:52:00 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-11 19:52:01 | INFO     | security_aggregator | [Scan] Completed 7/11: 데일리시큐
+2026-03-11 19:52:02 | INFO     | security_aggregator | [Scan] Completed 8/11: SK 쉴더스
+2026-03-11 19:52:03 | INFO     | security_aggregator | [Scan] Completed 9/11: 안랩 ASEC
+2026-03-11 19:52:10 | INFO     | security_aggregator | [Scan] Completed 10/11: 이글루코퍼레이션
+2026-03-11 19:52:13 | INFO     | security_aggregator | [Scan] Completed 11/11: 키워드 기반 뉴스
+2026-03-11 19:52:13 | INFO     | security_aggregator | 
+>>> 모든 크롤러 스캔 완료. 남은 큐 항목 처리 중... <<<
+2026-03-11 19:53:49 | INFO     | security_aggregator | 정기 크롤링 작업 시작 (Producer-Consumer Pattern)...
+2026-03-11 19:53:49 | INFO     | security_aggregator | [Phase 0-Async] 90일 정리 시작: 18aa4d68041448779c25...
+2026-03-11 19:53:49 | INFO     | security_aggregator | Phase 0: 90일 정리 비동기 실행 시작 (메인 작업 계속 진행)
+2026-03-11 19:53:49 | INFO     | security_aggregator | [Consumer #1] 시작 - 큐 모니터링 중...
+2026-03-11 19:53:49 | INFO     | security_aggregator | [System] 1개의 Consumer 스레드 시작 (즉시 처리 모드)
+2026-03-11 19:53:49 | INFO     | security_aggregator | 
+[2026-03-11 19:53:49.664942] 기사 처리(Consumer) 스레드 #1 시작...
+2026-03-11 19:53:49 | INFO     | security_aggregator | 
+>>> Phase 1: 모든 소스에서 기사 스캔 및 수집 중 (병렬 실행) <<<
+2026-03-11 19:53:49 | INFO     | security_aggregator | [DEBUG #1] 초기 큐 크기: 0
+2026-03-11 19:53:49 | INFO     | security_aggregator | >>> [중요] 큐에 추가된 기사는 즉시 Consumer가 처리합니다. <<<
+2026-03-11 19:53:49 | INFO     | security_aggregator | [Scan] Completed 1/11: KISA 가이드라인
+2026-03-11 19:53:50 | INFO     | security_aggregator | [Phase 0-Async] 90일 정리 완료: 18aa4d68041448779c25...
+2026-03-11 19:54:52 | INFO     | security_aggregator | [Scan] Completed 2/11: 보호나라 가이드라인
+2026-03-11 19:55:02 | INFO     | security_aggregator | [Scan] Completed 3/11: NCSC
+2026-03-11 19:55:06 | INFO     | security_aggregator | [Scan] Completed 4/11: 보호나라
+2026-03-11 19:55:08 | INFO     | security_aggregator | [Scan] Completed 5/11: KRCERT
+2026-03-11 19:55:08 | INFO     | security_aggregator | [Scan] Completed 6/11: 보안뉴스
+2026-03-11 19:55:11 | INFO     | security_aggregator | 
+[Processing] 데일리시큐 - 마이크로소프트 3월 보안 업데이트, 제로데이 2건 포함...
+2026-03-11 19:55:14 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-11 19:55:16 | INFO     | security_aggregator | [Scan] Completed 7/11: 데일리시큐
+2026-03-11 19:55:16 | INFO     | security_aggregator | [Scan] Completed 8/11: SK 쉴더스
+2026-03-11 19:55:16 | INFO     | security_aggregator | [Scan] Completed 9/11: 안랩 ASEC
+2026-03-11 19:55:23 | INFO     | security_aggregator | [Scan] Completed 10/11: 이글루코퍼레이션
+2026-03-11 19:55:25 | INFO     | security_aggregator | [Scan] Completed 11/11: 키워드 기반 뉴스
+2026-03-11 19:55:25 | INFO     | security_aggregator | 
+>>> 모든 크롤러 스캔 완료. 남은 큐 항목 처리 중... <<<
+2026-03-11 19:57:23 | INFO     | security_aggregator | [LLM] 본문 생성 완료 - 요약: 196자, 상세: 4286자
+2026-03-11 19:57:27 | INFO     | security_aggregator | 
+[Processing] 데일리시큐 - HPE, 아루바 AOS-CX 치명적 보안취약점 패치...
+2026-03-11 19:57:34 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-11 19:59:40 | ERROR    | security_aggregator | [LLM-ERROR] 2단계 생성 실패, 기존 방식으로 대체: 429 Client Error: Too Many Requests for url: https://api.z.ai/api/coding/paas/v4/chat/completions
+2026-03-11 19:59:43 | INFO     | security_aggregator | [LLM] 본문 생성 완료 - 요약: 216자, 상세: 4565자
+2026-03-11 19:59:44 | INFO     | security_aggregator | 
+[Processing] 데일리시큐 - 마이크로소프트 경고 "해커들, AI로 피싱부터 악성코드...
+2026-03-11 19:59:47 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
