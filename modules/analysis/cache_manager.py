@@ -104,11 +104,12 @@ class URLCacheManager:
         URL 정규화 - 중복 감지 향상을 위한 강화된 정규화
         
         1. http → https 변환
-        2. www. 접두사 제거 (일관성)
+        2. www., m., mobile. 접두사 제거 (일관성)
         3. trailing slash 제거
         4. tracking parameter 제거 (utm_*, ref, source 등)
         5. fragment (#) 제거 (페이지 내 위치는 URL 고유성에 영향 없음)
         6. 소문자 도메인 변환
+        7. 도메인별 URL 패턴 정규화 (NEW)
         """
         if not url:
             return ""
@@ -120,10 +121,14 @@ class URLCacheManager:
             if scheme == 'http':
                 scheme = 'https'
             
-            # 2. Normalize netloc (lowercase, remove www.)
+            # 2. Normalize netloc (lowercase, remove www/m/mobile)
             netloc = parsed.netloc.lower()
             if netloc.startswith('www.'):
                 netloc = netloc[4:]
+            elif netloc.startswith('m.'):
+                netloc = netloc[2:]
+            elif netloc.startswith('mobile.'):
+                netloc = netloc[7:]
             
             # 3. Strip trailing slash from path
             path = parsed.path.rstrip('/')
@@ -131,10 +136,17 @@ class URLCacheManager:
             # 4. Remove tracking parameters from query
             clean_query = _remove_tracking_params(parsed.query)
             
-            # 5. Remove fragment for comparison (page anchors don't change content)
-            # fragment = ''  # Always remove fragment
+            # 🆕 5. Domain-specific normalization
+            # BoanNews: idx 파라미터 기반 통일된 URL 사용
+            if 'boannews.com' in netloc and 'idx=' in url:
+                import re
+                idx_match = re.search(r'idx=(\d+)', url)
+                if idx_match:
+                    # 모든 BoanNews URL을 통일된 형식으로 변환
+                    path = f"/article/{idx_match.group(1)}"
+                    clean_query = ""
             
-            # Reconstruct URL (keep fragment for exact matching, but normalized)
+            # Reconstruct URL
             return urlunparse((scheme, netloc, path, parsed.params, clean_query, ''))
         except Exception:
             return url
