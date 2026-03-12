@@ -3,8 +3,10 @@ import os
 import time
 import schedule
 import threading
+import fcntl
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
 
 # 환경 변수 로드 (필요시 python-dotenv 사용)
 # from dotenv import load_dotenv
@@ -15,6 +17,48 @@ from modules.utils import send_slack_message
 from modules.publisher_service import PublisherService
 from modules.notion_handler import Duplicate_check, sync_cache_from_notion # [New] for optimized check
 from modules.log_utils import print_metrics_summary, logger  # 구조화된 메트릭 로깅
+
+# 🔒 중복 실행 방지 Lock 파일
+LOCK_FILE = Path("/tmp/security_news_aggregator.lock")
+LOCK_FD = None
+
+def acquire_lock():
+    """
+    파일 락을 획득하여 중복 실행을 방지합니다.
+    Returns:
+        bool: 락 획득 성공 여부 (False = 이미 실행 중)
+    """
+    global LOCK_FD
+    try:
+        LOCK_FD = open(LOCK_FILE, 'w')
+        fcntl.flock(LOCK_FD.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        LOCK_FD.write(f"{os.getpid()}\n")
+        LOCK_FD.flush()
+        return True
+    except (IOError, BlockingIOError):
+        if LOCK_FD:
+            try:
+                LOCK_FD.close()
+            except:
+                pass
+            LOCK_FD = None
+        return False
+
+def release_lock():
+    """파일 락 해제"""
+    global LOCK_FD
+    if LOCK_FD:
+        try:
+            fcntl.flock(LOCK_FD.fileno(), fcntl.LOCK_UN)
+            LOCK_FD.close()
+        except:
+            pass
+        finally:
+            LOCK_FD = None
+            try:
+                LOCK_FILE.unlink()
+            except:
+                pass
 
 # Import Crawlers
 from modules.crawlers.ncsc import NCSCCrawler
@@ -560,60 +604,73 @@ def start_weekly_tasks(publisher_service):
 
 def main():
     import argparse
-    parser = argparse.ArgumentParser(description="Security News Aggregator")
-    parser.add_argument("--once", action="store_true", help="Run only once and exit (for external schedulers)")
-    parser.add_argument("--skip-sync", action="store_true", help="Skip cache sync from Notion (faster startup)")
-    args = parser.parse_args()
-
-    logger.info("=== Security News Aggregator v2.1 Started ===")
     
-    # [개선] 캐시 동기화 (Notion DB의 모든 URL을 로컬 캐시에 로드)
-    if not args.skip_sync:
-        logger.info(">>> URL 캐시 동기화 시작 <<<")
-        try:
-            # BOANISSUE DB 동기화
-            sync_cache_from_notion(BOANISSUE_DATABASE_ID)
-            # GUIDE DB도 동기화
-            sync_cache_from_notion(GUIDE_DATABASE_ID)
-        except Exception as e:
-            logger.warning(f"[WARN] 캐시 동기화 실패 (계속 진행): {e}")
-    else:
-        logger.info("[INFO] --skip-sync 플래그로 캐시 동기화 건너뜀")
-    
-    # Publisher Service 초기화 (메인 스레드용, 주간 작업 등에서 사용)
-    publisher_service = PublisherService()
-
-    # 1회 즉시 실행 (스케줄러 시작 전 또는 단발성 실행 시)
-    logger.info(">>> 작업 실행 시작 <<<")
-    start_regular_tasks(publisher_service)
-    
-    # --once 플래그가 있으면 여기서 종료
-    if args.once:
-        logger.info("--once 플래그 감지: 1회 실행 후 종료합니다.")
+    # 🔒 중복 실행 방지 (파일 락 획득)
+    if not acquire_lock():
+        logger.warning("⚠️  이미 실행 중인 인스턴스가 있습니다. 종료합니다.")
+        print("⚠️  Security News Aggregator가 이미 실행 중입니다.")
+        print("   새 인스턴스를 시작하지 않습니다.")
         return
-
-    # 스케줄러 설정 (반복 모드일 경우에만 설정)
-    # 1. 정기 크롤링 (매 시간)
-    schedule.every(1).hours.do(start_regular_tasks, publisher_service)
     
-    # 2. 키워드 통계 분석 (6시간마다 - 최적화)
-    schedule.every(6).hours.do(start_keyword_analysis_task)
-    
-    # 3. 주간 작업 (매주 금요일 오후 6시)
-    schedule.every().friday.at("18:00").do(start_weekly_tasks, publisher_service)
+    try:
+        parser = argparse.ArgumentParser(description="Security News Aggregator")
+        parser.add_argument("--once", action="store_true", help="Run only once and exit (for external schedulers)")
+        parser.add_argument("--skip-sync", action="store_true", help="Skip cache sync from Notion (faster startup)")
+        args = parser.parse_args()
 
-    if RUN_SCHEDULER:
-        logger.info(f"[{datetime.now()}] 내부 스케줄러가 시작되었습니다. (Loop Mode)")
+        logger.info("=== Security News Aggregator v2.2 Started (Lock Enabled) ===")
         
-        # 이미 위에서 1회 실행했으므로 바로 대기 모드 진입
-        # start_keyword_analysis_task() # 필요시 초기 1회 실행
+        # [개선] 캐시 동기화 (Notion DB의 모든 URL을 로컬 캐시에 로드)
+        if not args.skip_sync:
+            logger.info(">>> URL 캐시 동기화 시작 <<<")
+            try:
+                # BOANISSUE DB 동기화
+                sync_cache_from_notion(BOANISSUE_DATABASE_ID)
+                # GUIDE DB도 동기화
+                sync_cache_from_notion(GUIDE_DATABASE_ID)
+            except Exception as e:
+                logger.warning(f"[WARN] 캐시 동기화 실패 (계속 진행): {e}")
+        else:
+            logger.info("[INFO] --skip-sync 플래그로 캐시 동기화 건너뜀")
         
-        logger.info(f"\n[{datetime.now()}] 스케줄러 대기 모드 진입 (다음 실행 예정)...")
-        while True:
-            schedule.run_pending()
-            time.sleep(60)
-    else:
-        logger.info("내부 스케줄러 설정(RUN_SCHEDULER)이 비활성화되어 있습니다. 종료합니다.")
+        # Publisher Service 초기화 (메인 스레드용, 주간 작업 등에서 사용)
+        publisher_service = PublisherService()
+
+        # 1회 즉시 실행 (스케줄러 시작 전 또는 단발성 실행 시)
+        logger.info(">>> 작업 실행 시작 <<<")
+        start_regular_tasks(publisher_service)
+        
+        # --once 플래그가 있으면 여기서 종료
+        if args.once:
+            logger.info("--once 플래그 감지: 1회 실행 후 종료합니다.")
+            return
+
+        # 스케줄러 설정 (반복 모드일 경우에만 설정)
+        # 1. 정기 크롤링 (매 시간)
+        schedule.every(1).hours.do(start_regular_tasks, publisher_service)
+        
+        # 2. 키워드 통계 분석 (6시간마다 - 최적화)
+        schedule.every(6).hours.do(start_keyword_analysis_task)
+        
+        # 3. 주간 작업 (매주 금요일 오후 6시)
+        schedule.every().friday.at("18:00").do(start_weekly_tasks, publisher_service)
+
+        if RUN_SCHEDULER:
+            logger.info(f"[{datetime.now()}] 내부 스케줄러가 시작되었습니다. (Loop Mode)")
+            
+            # 이미 위에서 1회 실행했으므로 바로 대기 모드 진입
+            # start_keyword_analysis_task() # 필요시 초기 1회 실행
+            
+            logger.info(f"\n[{datetime.now()}] 스케줄러 대기 모드 진입 (다음 실행 예정)...")
+            while True:
+                schedule.run_pending()
+                time.sleep(60)
+        else:
+            logger.info("내부 스케줄러 설정(RUN_SCHEDULER)이 비활성화되어 있습니다. 종료합니다.")
+    
+    finally:
+        # 🔒 항상 락 해제 (프로그램 종료 시)
+        release_lock()
 
 if __name__ == "__main__":
     main()
