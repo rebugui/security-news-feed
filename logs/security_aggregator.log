@@ -13501,3 +13501,4 @@ TOTAL              | 8     | 154   | 57    | 0     | 63    | 292
 2026-03-13 15:55:27 | INFO     | security_aggregator | 
 [Processing] 보안뉴스 - 광주시, 경기도 민원실 최초 ‘AI 모자이크 CCTV’...
 2026-03-13 15:55:31 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-13 16:00:01 | WARNING  | security_aggregator | ⚠️  이미 실행 중인 인스턴스가 있습니다. 종료합니다.
