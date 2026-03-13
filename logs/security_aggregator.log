@@ -13497,3 +13497,7 @@ TOTAL              | 8     | 154   | 57    | 0     | 63    | 292
 2026-03-13 15:34:03 | INFO     | security_aggregator | 
 [Processing] 보안뉴스 - 퇴직공무원 8명 ‘2026 개인정보 안전 지킴이’ 위촉...
 2026-03-13 15:34:07 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-13 15:50:14 | ERROR    | security_aggregator | [LLM-ERROR] 2단계 생성 실패, 기존 방식으로 대체: HTTPSConnectionPool(host='api.z.ai', port=443): Read timed out. (read timeout=120)
+2026-03-13 15:55:27 | INFO     | security_aggregator | 
+[Processing] 보안뉴스 - 광주시, 경기도 민원실 최초 ‘AI 모자이크 CCTV’...
+2026-03-13 15:55:31 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
