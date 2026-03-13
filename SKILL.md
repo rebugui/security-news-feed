@@ -1,5 +1,6 @@
 ---
 name: security-news-feed
+version: 1.1.0
 description: Automated security news aggregation and summarization module. Collects news from 11 Korean security sources (KRCERT, NCSC, Boho, Dailysec, etc.) → summarizes with Gemini API → publishes to Notion/Tistory. Runs hourly. Use when you want to monitor security news, collect Korean security updates, or aggregate news feeds. Triggers: "보안 뉴스", "security news", "뉴스 수집".
 ---
 
