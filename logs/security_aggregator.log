@@ -17234,3 +17234,30 @@ TOTAL              | 8     | 150   | 55    | 0     | 68    | 291
 [Processing] 보안뉴스 - “10분컷 해킹 시대, AI는 방어자 ‘아이언맨 수트’...
 2026-03-16 17:44:53 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
 2026-03-16 17:57:24 | ERROR    | security_aggregator | [LLM-ERROR] 2단계 생성 실패, 기존 방식으로 대체: 429 Client Error: Too Many Requests for url: https://api.z.ai/api/coding/paas/v4/chat/completions
+2026-03-16 18:00:01 | WARNING  | security_aggregator | ⚠️  이미 실행 중인 인스턴스가 있습니다. 종료합니다.
+2026-03-16 18:11:10 | ERROR    | security_aggregator | [LLM-ERROR] 기존 방식도 실패 (원본 사용): HTTPSConnectionPool(host='api.z.ai', port=443): Read timed out. (read timeout=120)
+2026-03-16 18:11:11 | INFO     | security_aggregator | 
+[2026-03-16 18:11:11.070415] 기사 처리(Consumer) 스레드 종료. (총 3건 처리)
+2026-03-16 18:11:11 | INFO     | security_aggregator | [System] 모든 Consumer 스레드 종료 완료
+2026-03-16 18:11:11 | INFO     | security_aggregator | 
+==================================================================
+Source             | New   | Dup   | Old   | Err   | Ign   | Tot  
+------------------------------------------------------------------
+KISA 가이드라인    | 0     | 10    | 0     | 0     | 0     | 10   
+보호나라 가이드라인 | 0     | 11    | 0     | 0     | 0     | 11   
+NCSC               | 0     | 0     | 10    | 0     | 0     | 10   
+보호나라           | 0     | 10    | 4     | 0     | 0     | 14   
+KRCERT             | 1     | 12    | 7     | 0     | 0     | 20   
+보안뉴스           | 1     | 19    | 0     | 0     | 0     | 30   
+데일리시큐         | 0     | 20    | 0     | 0     | 0     | 20   
+SK 쉴더스          | 0     | 0     | 27    | 0     | 0     | 27   
+안랩 ASEC          | 0     | 6     | 0     | 0     | 0     | 6    
+이글루코퍼레이션   | 0     | 11    | 7     | 0     | 0     | 18   
+키워드 기반 뉴스   | 9     | 46    | 0     | 0     | 69    | 124  
+------------------------------------------------------------------
+TOTAL              | 11    | 145   | 55    | 0     | 69    | 290  
+==================================================================
+
+2026-03-16 18:11:11 | INFO     | security_aggregator | [System] Slack으로 실행 결과 리포트를 전송했습니다.
+2026-03-16 18:11:11 | INFO     | security_aggregator | [2026-03-16 18:11:11.072408] 정기 크롤링 작업 전체 종료.
+
