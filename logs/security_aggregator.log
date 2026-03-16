@@ -17196,3 +17196,41 @@ TOTAL              | 8     | 150   | 55    | 0     | 68    | 291
 2026-03-16 16:42:25 | INFO     | security_aggregator | 
 [2026-03-16 16:42:25.139879] 키워드 통계 분석 시작...
 2026-03-16 16:42:26 | INFO     | security_aggregator | [2026-03-16 16:42:26.498992] 키워드 통계 분석 완료.
+2026-03-16 17:00:00 | WARNING  | security_aggregator | ⚠️  이미 실행 중인 인스턴스가 있습니다. 종료합니다.
+2026-03-16 17:31:26 | INFO     | security_aggregator | 정기 크롤링 작업 시작 (Producer-Consumer Pattern)...
+2026-03-16 17:31:26 | INFO     | security_aggregator | [Phase 0-Async] 90일 정리 시작: 18aa4d68041448779c25...
+2026-03-16 17:31:26 | INFO     | security_aggregator | Phase 0: 90일 정리 비동기 실행 시작 (메인 작업 계속 진행)
+2026-03-16 17:31:26 | INFO     | security_aggregator | [Consumer #1] 시작 - 큐 모니터링 중...
+2026-03-16 17:31:26 | INFO     | security_aggregator | [System] 1개의 Consumer 스레드 시작 (즉시 처리 모드)
+2026-03-16 17:31:26 | INFO     | security_aggregator | 
+[2026-03-16 17:31:26.741199] 기사 처리(Consumer) 스레드 #1 시작...
+2026-03-16 17:31:26 | INFO     | security_aggregator | 
+>>> Phase 1: 모든 소스에서 기사 스캔 및 수집 중 (병렬 실행) <<<
+2026-03-16 17:31:26 | INFO     | security_aggregator | [DEBUG #1] 초기 큐 크기: 0
+2026-03-16 17:31:26 | INFO     | security_aggregator | >>> [중요] 큐에 추가된 기사는 즉시 Consumer가 처리합니다. <<<
+2026-03-16 17:31:27 | INFO     | security_aggregator | [Scan] Completed 1/11: KISA 가이드라인
+2026-03-16 17:31:28 | INFO     | security_aggregator | [Phase 0-Async] 90일 정리 완료: 18aa4d68041448779c25...
+2026-03-16 17:32:29 | INFO     | security_aggregator | [Scan] Completed 2/11: 보호나라 가이드라인
+2026-03-16 17:32:37 | INFO     | security_aggregator | [Scan] Completed 3/11: NCSC
+2026-03-16 17:32:39 | INFO     | security_aggregator | [Scan] Completed 4/11: 보호나라
+2026-03-16 17:32:41 | INFO     | security_aggregator | 
+[Processing] KRCERT - Veeam 제품 보안 업데이트 권고...
+2026-03-16 17:32:41 | INFO     | security_aggregator | [Scan] Completed 5/11: KRCERT
+2026-03-16 17:32:41 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-16 17:32:44 | INFO     | security_aggregator | [Scan] Completed 6/11: 보안뉴스
+2026-03-16 17:32:45 | INFO     | security_aggregator | [Scan] Completed 7/11: 데일리시큐
+2026-03-16 17:32:45 | INFO     | security_aggregator | [Scan] Completed 8/11: SK 쉴더스
+2026-03-16 17:32:45 | INFO     | security_aggregator | [Scan] Completed 9/11: 안랩 ASEC
+2026-03-16 17:32:51 | INFO     | security_aggregator | [Scan] Completed 10/11: 이글루코퍼레이션
+2026-03-16 17:32:53 | INFO     | security_aggregator | [Scan] Completed 11/11: 키워드 기반 뉴스
+2026-03-16 17:32:53 | INFO     | security_aggregator | 
+>>> 모든 크롤러 스캔 완료. 남은 큐 항목 처리 중... <<<
+2026-03-16 17:38:31 | INFO     | security_aggregator | [LLM] 본문 생성 완료 - 요약: 447자, 상세: 5164자
+2026-03-16 17:38:31 | INFO     | security_aggregator | 
+[Processing] 보안뉴스 - “기업 평판 훼손에 법적 리스크까지” 카스퍼스키, ‘S...
+2026-03-16 17:38:36 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-16 17:44:49 | INFO     | security_aggregator | [LLM] 본문 생성 완료 - 요약: 245자, 상세: 4060자
+2026-03-16 17:44:50 | INFO     | security_aggregator | 
+[Processing] 보안뉴스 - “10분컷 해킹 시대, AI는 방어자 ‘아이언맨 수트’...
+2026-03-16 17:44:53 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-16 17:57:24 | ERROR    | security_aggregator | [LLM-ERROR] 2단계 생성 실패, 기존 방식으로 대체: 429 Client Error: Too Many Requests for url: https://api.z.ai/api/coding/paas/v4/chat/completions
