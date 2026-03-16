@@ -17074,3 +17074,67 @@ TOTAL              | 8     | 149   | 57    | 0     | 67    | 291
 2026-03-16 14:06:15 | INFO     | security_aggregator | [System] Slack으로 실행 결과 리포트를 전송했습니다.
 2026-03-16 14:06:15 | INFO     | security_aggregator | [2026-03-16 14:06:15.625196] 정기 크롤링 작업 전체 종료.
 
+2026-03-16 15:00:01 | WARNING  | security_aggregator | ⚠️  이미 실행 중인 인스턴스가 있습니다. 종료합니다.
+2026-03-16 15:06:15 | INFO     | security_aggregator | 정기 크롤링 작업 시작 (Producer-Consumer Pattern)...
+2026-03-16 15:06:15 | INFO     | security_aggregator | [Phase 0-Async] 90일 정리 시작: 18aa4d68041448779c25...
+2026-03-16 15:06:15 | INFO     | security_aggregator | Phase 0: 90일 정리 비동기 실행 시작 (메인 작업 계속 진행)
+2026-03-16 15:06:15 | INFO     | security_aggregator | [Consumer #1] 시작 - 큐 모니터링 중...
+2026-03-16 15:06:15 | INFO     | security_aggregator | [System] 1개의 Consumer 스레드 시작 (즉시 처리 모드)
+2026-03-16 15:06:15 | INFO     | security_aggregator | 
+[2026-03-16 15:06:15.996982] 기사 처리(Consumer) 스레드 #1 시작...
+2026-03-16 15:06:15 | INFO     | security_aggregator | 
+>>> Phase 1: 모든 소스에서 기사 스캔 및 수집 중 (병렬 실행) <<<
+2026-03-16 15:06:15 | INFO     | security_aggregator | [DEBUG #1] 초기 큐 크기: 0
+2026-03-16 15:06:15 | INFO     | security_aggregator | >>> [중요] 큐에 추가된 기사는 즉시 Consumer가 처리합니다. <<<
+2026-03-16 15:06:16 | INFO     | security_aggregator | [Scan] Completed 1/11: KISA 가이드라인
+2026-03-16 15:06:17 | INFO     | security_aggregator | [Phase 0-Async] 90일 정리 완료: 18aa4d68041448779c25...
+2026-03-16 15:07:18 | INFO     | security_aggregator | [Scan] Completed 2/11: 보호나라 가이드라인
+2026-03-16 15:07:26 | INFO     | security_aggregator | [Scan] Completed 3/11: NCSC
+2026-03-16 15:07:28 | INFO     | security_aggregator | [Scan] Completed 4/11: 보호나라
+2026-03-16 15:07:29 | INFO     | security_aggregator | [Scan] Completed 5/11: KRCERT
+2026-03-16 15:07:32 | INFO     | security_aggregator | 
+[Processing] 보안뉴스 - “AI가 사이버 공격 가속 페달”... 크라우드스트라이...
+2026-03-16 15:07:32 | INFO     | security_aggregator | [Scan] Completed 6/11: 보안뉴스
+2026-03-16 15:07:32 | INFO     | security_aggregator | [Scan] Completed 7/11: 데일리시큐
+2026-03-16 15:07:32 | INFO     | security_aggregator | [Scan] Completed 8/11: SK 쉴더스
+2026-03-16 15:07:33 | INFO     | security_aggregator | [Scan] Completed 9/11: 안랩 ASEC
+2026-03-16 15:07:35 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-16 15:07:40 | INFO     | security_aggregator | [Scan] Completed 10/11: 이글루코퍼레이션
+2026-03-16 15:07:42 | INFO     | security_aggregator | [Scan] Completed 11/11: 키워드 기반 뉴스
+2026-03-16 15:07:42 | INFO     | security_aggregator | 
+>>> 모든 크롤러 스캔 완료. 남은 큐 항목 처리 중... <<<
+2026-03-16 15:12:52 | INFO     | security_aggregator | [LLM] 본문 생성 완료 - 요약: 237자, 상세: 5582자
+2026-03-16 15:12:53 | INFO     | security_aggregator | 
+[Processing] Igloo - [보안 101] 2026 ISMS-P 대개편, CEO가...
+2026-03-16 15:12:55 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-16 15:17:53 | INFO     | security_aggregator | [LLM] 본문 생성 완료 - 요약: 211자, 상세: 4085자
+2026-03-16 15:17:54 | INFO     | security_aggregator | 
+[Processing] TheHackerNews - Android 17 Blocks Non-Accessib...
+2026-03-16 15:18:25 | INFO     | security_aggregator | [번역] 영문 제목 번역 완료
+2026-03-16 15:18:25 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-16 15:27:43 | INFO     | security_aggregator | [LLM] 본문 생성 완료 - 요약: 231자, 상세: 6458자
+2026-03-16 15:27:44 | INFO     | security_aggregator | 
+[2026-03-16 15:27:44.388592] 기사 처리(Consumer) 스레드 종료. (총 3건 처리)
+2026-03-16 15:27:44 | INFO     | security_aggregator | [System] 모든 Consumer 스레드 종료 완료
+2026-03-16 15:27:44 | INFO     | security_aggregator | 
+==================================================================
+Source             | New   | Dup   | Old   | Err   | Ign   | Tot  
+------------------------------------------------------------------
+KISA 가이드라인    | 0     | 10    | 0     | 0     | 0     | 10   
+보호나라 가이드라인 | 0     | 11    | 0     | 0     | 0     | 11   
+NCSC               | 0     | 0     | 10    | 0     | 0     | 10   
+보호나라           | 0     | 10    | 4     | 0     | 0     | 14   
+KRCERT             | 0     | 13    | 7     | 0     | 0     | 20   
+보안뉴스           | 1     | 19    | 0     | 0     | 0     | 30   
+데일리시큐         | 0     | 20    | 0     | 0     | 0     | 20   
+SK 쉴더스          | 0     | 0     | 27    | 0     | 0     | 27   
+안랩 ASEC          | 0     | 6     | 0     | 0     | 0     | 6    
+이글루코퍼레이션   | 0     | 10    | 7     | 0     | 0     | 18   
+키워드 기반 뉴스   | 8     | 49    | 0     | 0     | 68    | 125  
+------------------------------------------------------------------
+TOTAL              | 9     | 148   | 55    | 0     | 68    | 291  
+==================================================================
+
+2026-03-16 15:27:44 | INFO     | security_aggregator | [System] Slack으로 실행 결과 리포트를 전송했습니다.
+2026-03-16 15:27:44 | INFO     | security_aggregator | [2026-03-16 15:27:44.390822] 정기 크롤링 작업 전체 종료.
+
