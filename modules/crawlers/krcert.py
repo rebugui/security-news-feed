@@ -21,7 +21,7 @@ class KRCERTCrawler(BaseCrawler):
             'https://knvd.krcert.or.kr/rss/security/notice',  # 보안공지
             'https://knvd.krcert.or.kr/rss/security/info',    # 보안정보 (CVE)
         ]
-        self.download_dir = os.path.join(os.getcwd(), "temp_downloads_krcert")
+        self.download_dir = os.path.join("/tmp", "temp_downloads_krcert")
 
     def run(self, publisher_service):
         processing_queue = []

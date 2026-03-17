@@ -24,7 +24,7 @@ class BohoCrawler(BaseCrawler):
         self.source_name = "보호나라 가이드라인"
         self.base_url = "https://www.boho.or.kr"
         self.target_url = f"{self.base_url}/kr/bbs/list.do?menuNo=205021&bbsId=B0000127&page=1"
-        self.download_dir = os.path.join(os.getcwd(), "temp_downloads_boho")
+        self.download_dir = os.path.join("/tmp", "temp_downloads_boho")
 
     def run(self, publisher_service):
         seen_urls = set()
@@ -35,7 +35,7 @@ class BohoCrawler(BaseCrawler):
         scan_error_count = 0
 
         # 임시 다운로드 디렉토리 설정 (절대 경로로 변환)
-        self.download_dir = os.path.abspath(os.path.join(os.getcwd(), "temp_downloads_boho"))
+        self.download_dir = os.path.abspath(os.path.join("/tmp", "temp_downloads_boho"))
 
         # 디렉토리 정리 및 생성
         if os.path.exists(self.download_dir):

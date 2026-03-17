@@ -115,6 +115,10 @@ CHROME_HEADLESS_MODE = os.getenv("CHROME_HEADLESS_MODE", "new")  # headless 모�
 LLM_CACHE_MAX_SIZE = int(os.getenv("LLM_CACHE_MAX_SIZE", "1000"))  # LLM 캐시 최대 크기
 LLM_CACHE_TTL_HOURS = int(os.getenv("LLM_CACHE_TTL_HOURS", "24"))  # LLM 캐시 TTL (시간)
 
+# LLM API 호출 설정
+LLM_API_TIMEOUT = int(os.getenv("LLM_API_TIMEOUT", "180"))  # API 타임아웃 (초)
+LLM_CALL_DELAY = float(os.getenv("LLM_CALL_DELAY", "1.0"))  # API 호출 간 딜레이 (초)
+
 
 # ========================
 # 설정 검증 유틸리티

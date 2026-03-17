@@ -25,7 +25,7 @@ class KISANoticeCrawler(BaseCrawler):
         self.source_name = "보호나라"
         self.base_url = "https://www.boho.or.kr"
         self.list_url = "https://www.boho.or.kr/kr/bbs/list.do?menuNo=205020&bbsId=B0000133"
-        self.download_dir = os.path.join(os.getcwd(), "temp_downloads_notice") # Separate dir
+        self.download_dir = os.path.join("/tmp", "temp_downloads_notice") # Separate dir
 
     def run(self, collector):
         # 1. Scanning Phase

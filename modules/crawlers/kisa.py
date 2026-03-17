@@ -19,7 +19,7 @@ class KISACrawler(BaseCrawler):
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
         }
-        self.download_dir = os.path.join(os.getcwd(), "temp_downloads_kisa")
+        self.download_dir = os.path.join("/tmp", "temp_downloads_kisa")
 
     def run(self, publisher_service):
         processing_queue = []

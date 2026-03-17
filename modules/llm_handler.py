@@ -13,7 +13,7 @@ from functools import wraps
 
 import requests
 
-from config import ZAI_API_KEY
+from config import ZAI_API_KEY, LLM_API_TIMEOUT, LLM_CALL_DELAY
 
 # 프롬프트 템플릿 임포트
 from .prompts.translation import SYSTEM_PROMPT as TRANSLATION_SYSTEM, USER_PROMPT_TEMPLATE as TRANSLATION_USER
@@ -251,6 +251,9 @@ def call_zai_api(messages: list, model: str = DEFAULT_MODEL, max_retries: int = 
         "messages": messages
     }
 
+    # API 호출 간 딜레이 (Rate limit 방지)
+    time.sleep(LLM_CALL_DELAY)
+
     # 재시도 로직 (지수 백오프)
     last_exception = None
     initial_delay = 1.0
@@ -264,7 +267,7 @@ def call_zai_api(messages: list, model: str = DEFAULT_MODEL, max_retries: int = 
 
             logger.debug(f"API 요청 - Model: {model}, Messages: {len(messages)}개")
 
-            response = requests.post(ZAI_API_URL, headers=headers, json=data, timeout=120)
+            response = requests.post(ZAI_API_URL, headers=headers, json=data, timeout=LLM_API_TIMEOUT)
 
             # 디버깅: 응답 상태 로깅
             logger.debug(f"API 응답 - Status: {response.status_code}")

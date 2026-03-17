@@ -20,7 +20,7 @@ class NCSCCrawler(BaseCrawler):
     def __init__(self):
         super().__init__()
         self.source_name = "NCSC"
-        self.download_dir = os.path.join(os.getcwd(), "temp_downloads_ncsc")
+        self.download_dir = os.path.join("/tmp", "temp_downloads_ncsc")
 
     def run(self, publisher_service):
         processing_queue = [] # Not used in Stream mode but kept for compatibility logic
