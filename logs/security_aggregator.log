@@ -18485,3 +18485,29 @@ TOTAL              | 18    | 135   | 56    | 0     | 72    | 291
 [Processing] KRCERT - 美 CISA 발표 주요 Exploit 정보공유(Upda...
 2026-03-17 21:10:53 | INFO     | security_aggregator | [번역] 영문 제목 번역 완료
 2026-03-17 21:10:53 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
+2026-03-17 21:13:48 | INFO     | security_aggregator | [LLM] 본문 생성 완료 - 요약: 193자, 상세: 4741자
+2026-03-17 21:13:48 | INFO     | security_aggregator | 
+[Processing] KRCERT 보안정보 - CVE-2025-29864 | 이스트소프트 알집 Mar...
+2026-03-17 21:13:48 | INFO     | security_aggregator | [SKIP] 오래된 기사 (90일 초과, 2025-12-01): CVE-2025-29864 | 이스트소프트 알집 Mark of the Web 우회 취약점
+2026-03-17 21:13:48 | INFO     | security_aggregator | 
+[Processing] KRCERT 보안정보 - CVE-2025-29866 | 태그프리 제품 부적절한 ...
+2026-03-17 21:13:48 | INFO     | security_aggregator | [SKIP] 오래된 기사 (90일 초과, 2025-07-31): CVE-2025-29866 | 태그프리 제품 부적절한 권한 검증 취약점
+2026-03-17 21:13:48 | INFO     | security_aggregator | 
+[Processing] KRCERT 보안정보 - CVE-2025-29865 | 태그프리 제품 파일 다운...
+2026-03-17 21:13:48 | INFO     | security_aggregator | [SKIP] 오래된 기사 (90일 초과, 2025-07-31): CVE-2025-29865 | 태그프리 제품 파일 다운로드 취약점
+2026-03-17 21:13:48 | INFO     | security_aggregator | 
+[Processing] KRCERT 보안정보 - CVE-2024-23843 | 지니언스 NAC SQL ...
+2026-03-17 21:13:48 | INFO     | security_aggregator | [SKIP] 오래된 기사 (90일 초과, 2024-11-05): CVE-2024-23843 | 지니언스 NAC SQL Injection 취약점
+2026-03-17 21:13:48 | INFO     | security_aggregator | 
+[Processing] KRCERT 보안정보 - CVE-2023-45801 | 나다텔 DVR 부적절한 ...
+2026-03-17 21:13:48 | INFO     | security_aggregator | [SKIP] 오래된 기사 (90일 초과, 2024-02-23): CVE-2023-45801 | 나다텔 DVR 부적절한 인증 취약점
+2026-03-17 21:13:48 | INFO     | security_aggregator | 
+[Processing] KRCERT 보안정보 - CVE-2023-45800 | 한비로 그룹웨어 SQL ...
+2026-03-17 21:13:48 | INFO     | security_aggregator | [SKIP] 오래된 기사 (90일 초과, 2024-02-23): CVE-2023-45800 | 한비로 그룹웨어 SQL Injection 취약점
+2026-03-17 21:13:48 | INFO     | security_aggregator | 
+[Processing] KRCERT 보안정보 - CVE-2023-45799 | 엠엘소프트 파일 다운로드...
+2026-03-17 21:13:48 | INFO     | security_aggregator | [SKIP] 오래된 기사 (90일 초과, 2024-02-23): CVE-2023-45799 | 엠엘소프트 파일 다운로드 및 실행 취약점
+2026-03-17 21:13:48 | INFO     | security_aggregator | 
+[Processing] TheHackerNews - AI is Everywhere, But CISOs ar...
+2026-03-17 21:15:32 | INFO     | security_aggregator | [번역] 영문 제목 번역 완료
+2026-03-17 21:15:32 | INFO     | security_aggregator | [LLM] 2단계 본문 생성 중... (원문 제목 유지)
