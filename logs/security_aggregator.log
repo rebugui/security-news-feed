@@ -18655,3 +18655,4 @@ TOTAL              | 13    | 143   | 56    | 0     | 66    | 288
 2026-03-17 23:37:59 | INFO     | security_aggregator | [System] Slack으로 실행 결과 리포트를 전송했습니다.
 2026-03-17 23:37:59 | INFO     | security_aggregator | [2026-03-17 23:37:59.311913] 정기 크롤링 작업 전체 종료.
 
+2026-03-18 00:00:00 | WARNING  | security_aggregator | ⚠️  이미 실행 중인 인스턴스가 있습니다. 종료합니다.
