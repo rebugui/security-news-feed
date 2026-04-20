@@ -1,0 +1,12 @@
+{
+  "active": true,
+  "iteration": 3,
+  "max_iterations": 100,
+  "started_at": "2026-04-19T06:57:35.466Z",
+  "prompt": "kisa-guideline-hub는 Ralph가 수정한 내용이 collector 관련이었는데, 실제로는 scripts/publish_guidelines.py만 있고 collector 모듈은 없어.",
+  "session_id": "61971ae1-09eb-4696-8311-cdcb39d411e5",
+  "project_path": "/Users/rebugui/.openclaw/workspace/skills/security-news-feed",
+  "linked_ultrawork": true,
+  "awaiting_confirmation": true,
+  "last_checked_at": "2026-04-19T07:25:31.831Z"
+}

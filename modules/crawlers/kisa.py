@@ -8,13 +8,13 @@ from urllib.parse import urljoin
 from ..base_crawler import BaseCrawler
 from ..utils import date_re, send_slack_message, clean_html_content
 from ..notion_handler import Duplicate_check
-from config import BOANISSUE_DATABASE_ID
+from config import BOANISSUE_DATABASE_ID, GUIDE_DATABASE_ID
 
 class KISACrawler(BaseCrawler):
     def __init__(self):
         super().__init__()
         self.source_name = "KISA 가이드라인"
-        self.base_url = "https://인터넷진흥원.한국"
+        self.base_url = "https://www.kisa.or.kr"
         self.target_url = f"{self.base_url}/2060207?page=1"
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
@@ -114,7 +114,7 @@ class KISACrawler(BaseCrawler):
                     seen_urls.add(link_url)
                     
                     # Notion 중복 체크
-                    duplicate_status = Duplicate_check(link_url, BOANISSUE_DATABASE_ID)
+                    duplicate_status = Duplicate_check(link_url, GUIDE_DATABASE_ID)
                     if duplicate_status == 0:
                         # 상세 페이지에서 내용 추출
                         final_content = "내용 없음"
@@ -132,19 +132,74 @@ class KISACrawler(BaseCrawler):
                                 detail_soup = BeautifulSoup(detail_resp.text, 'html.parser')
                                 
                                 # 본문 추출
-                                content_div = detail_soup.find('div', class_='board_view')
-                                if not content_div:
-                                    content_div = detail_soup.find('div', class_='content')
+                                content_div = (detail_soup.find('div', class_='board_detail_contents') or
+                                             detail_soup.find('div', class_='board_view') or
+                                             detail_soup.find('div', class_='content'))
                                 
                                 if content_div:
                                     final_content = clean_html_content(content_div.get_text(separator='\n'))
                                 
-                                # 첨부 파일 링크 추출
-                                file_links = detail_soup.select('a[href*="download"]')
-                                for file_link in file_links:
-                                    file_url = file_link.get('href', '')
-                                    if file_url:
-                                        files_to_upload.append(urljoin(self.base_url, file_url))
+                                # 첨부 파일 추출 (KISA는 JS 기반 다운로드)
+                                attach_section = detail_soup.find('div', class_='board_detail_attach')
+                                if not attach_section:
+                                    attach_section = detail_soup
+                                
+                                # 파일 링크 선택자 확장
+                                file_links = (attach_section.select('a[href*="download"]') +
+                                            attach_section.select('a[href*="#fnPostAttachDownload"]') +
+                                            attach_section.select('a.btn-file'))
+                                
+                                for idx_file, file_link in enumerate(file_links, 1):
+                                    href = file_link.get('href', '')
+                                    file_name = file_link.get_text(strip=True) or 'attachment'
+                                    
+                                    # JS 다운로드 링크인 경우: /post/fileDownload 엔드포인트 사용
+                                    if href.startswith('#') or 'fnPostAttachDownload' in href:
+                                        import re as _re
+                                        file_name_text = _re.sub(r'\s*\(.*?(?:MB|KB|GB).*?\)', '', file_name).strip()
+                                        
+                                        # menuSeq, postSeq 추출
+                                        menu_seq_match = _re.search(r'/(\d{7,})/', link_url)
+                                        post_seq_match = _re.search(r'postSeq=(\d+)', link_url)
+                                        menu_seq = menu_seq_match.group(1) if menu_seq_match else '2060202'
+                                        post_seq = post_seq_match.group(1) if post_seq_match else None
+                                        
+                                        if post_seq:
+                                            file_url_to_use = f'{self.base_url}/post/fileDownload?menuSeq={menu_seq}&postSeq={post_seq}&attachSeq={idx_file}&lang_type=KO'
+                                            file_name_clean = file_name_text
+                                        else:
+                                            file_url_to_use = None
+                                            file_name_clean = file_name_text
+                                    else:
+                                        file_url_to_use = urljoin(self.base_url, href)
+                                        file_name_clean = file_name
+                                    
+                                    if file_url_to_use:
+                                        try:
+                                            dl_resp = requests.get(
+                                                file_url_to_use, headers=self.headers,
+                                                timeout=30, verify=False, stream=True
+                                            )
+                                            if dl_resp.status_code == 200 and len(dl_resp.content) > 0:
+                                                safe_name = _re.sub(r'[\\/:*?"<>|]', '_', file_name_text)
+                                                if not any(safe_name.lower().endswith(ext) for ext in ['.pdf', '.hwp', '.hwpx', '.doc', '.docx', '.zip', '.xlsx', '.pptx']):
+                                                    safe_name += '.pdf'
+                                                local_path = os.path.join(self.download_dir, safe_name)
+                                                with open(local_path, 'wb') as f:
+                                                    f.write(dl_resp.content)
+                                                if os.path.getsize(local_path) > 0:
+                                                    files_to_upload.append({
+                                                        'path': local_path,
+                                                        'name': safe_name
+                                                    })
+                                                    print(f'  📄 다운로드 완료: {safe_name} ({os.path.getsize(local_path)} bytes)')
+                                                else:
+                                                    os.remove(local_path)
+                                                    print(f'  ❌ 빈 파일: {safe_name}')
+                                            else:
+                                                print(f'  ❌ 다운로드 실패: {file_name_text} (status: {dl_resp.status_code}, size: {len(dl_resp.content)})')
+                                        except Exception as dl_err:
+                                            print(f'  ❌ 다운로드 오류: {file_name_text} - {dl_err}')
                         
                         except Exception as e:
                             print(f"[{self.source_name}-DETAIL] Error: {e}")
@@ -156,6 +211,7 @@ class KISACrawler(BaseCrawler):
                             'url': link_url,
                             'source': self.source_name,
                             'category': 'KISA',
+                            'date': posting_date.strftime('%Y-%m-%d') if posting_date else None,
                             'posting_date': posting_date,
                             'files': files_to_upload
                         }

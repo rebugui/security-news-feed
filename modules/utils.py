@@ -165,14 +165,20 @@ def pad_str(s, width, align='left', fillchar=' '):
 def send_slack_message(message):
     """
     주어진 메시지를 Slack으로 전송합니다.
+    웹훅 URL이 설정되지 않은 경우 무시합니다.
     """
+    # 웹훅 URL이 설정되지 않은 경우 무료
+    if not SLACK_WEBHOOK_URL or SLACK_WEBHOOK_URL == 'None':
+        print("⏭️ 슬랙 웹훅 URL이 설정되지 않아 메시지 전송을 건너뜁니다")
+        return
+        
     payload = {"text": message}
     try:
         response = requests.post(SLACK_WEBHOOK_URL, json=payload, timeout=10)
         response.raise_for_status()  # HTTP 오류 발생 시 예외를 발생시킴
         # print("슬랙 메시지 전송 성공!")
     except requests.exceptions.RequestException as e:
-        print(f"슬랙 메시지 전송 실패: {e}")
+        print(f"❌ 슬랙 메시지 전송 실패: {e}")
 
 
 def date_re(date_str):
@@ -183,6 +189,10 @@ def date_re(date_str):
     if not isinstance(date_str, str) or not date_str.strip():
         return None
     date_str = date_str.strip()
+    
+    # strptime에 None을 전달하지 않도록 보장
+    if not date_str:
+        return None
 
     try:
         # 이 포맷은 한글 '월'과 공백을 포함하므로, strptime으로 직접 파싱

@@ -30,7 +30,7 @@ class Config:
     # GLM API 설정
     GLM_API_KEY = os.getenv('SECURITY_NEWS_GLM_API_KEY') or os.getenv('GLM_API_KEY')
     GLM_BASE_URL = os.getenv('GLM_BASE_URL', 'https://api.z.ai/api/coding/paas/v4')
-    GLM_MODEL = "glm-5"
+    GLM_MODEL = os.getenv('SECURITY_LLM_MODEL', 'glm-4.7')  # config.py와 통일
     GLM_MAX_TOKENS = 1000
     GLM_TEMPERATURE = 0.7
     

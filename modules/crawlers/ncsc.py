@@ -138,7 +138,8 @@ class NCSCCrawler(BaseCrawler):
                                     for f in os.listdir(self.download_dir):
                                         try:
                                             os.remove(os.path.join(self.download_dir, f))
-                                        except: pass
+                                        except Exception as e:
+                                            logger.debug(f"이전 파일 삭제 스킵: {e}")
                                     
                                     # [New] 본문 이미지 다운로드
                                     try:

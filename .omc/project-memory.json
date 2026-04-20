@@ -1,0 +1,112 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1776582156791,
+  "projectRoot": "/Users/rebugui/.openclaw/workspace/skills/security-news-feed",
+  "techStack": {
+    "languages": [
+      {
+        "name": "Python",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "requirements.txt"
+        ]
+      }
+    ],
+    "frameworks": [],
+    "packageManager": "pip",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "__pycache__": {
+      "path": "__pycache__",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1776582156781,
+      "keyFiles": [
+        "config.cpython-314.pyc"
+      ]
+    },
+    "data": {
+      "path": "data",
+      "purpose": "Data files",
+      "fileCount": 1,
+      "lastAccessed": 1776582156782,
+      "keyFiles": [
+        "url_cache.db"
+      ]
+    },
+    "logs": {
+      "path": "logs",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1776582156782,
+      "keyFiles": [
+        "security_aggregator.log"
+      ]
+    },
+    "modules": {
+      "path": "modules",
+      "purpose": null,
+      "fileCount": 9,
+      "lastAccessed": 1776582156782,
+      "keyFiles": [
+        "__init__.py",
+        "base_crawler.py",
+        "llm_handler.py",
+        "log_utils.py",
+        "notion_handler.py"
+      ]
+    },
+    "temp_downloads_kisa": {
+      "path": "temp_downloads_kisa",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1776582156782,
+      "keyFiles": []
+    },
+    "temp_downloads_krcert": {
+      "path": "temp_downloads_krcert",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1776582156782,
+      "keyFiles": []
+    },
+    "temp_downloads_ncsc": {
+      "path": "temp_downloads_ncsc",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1776582156782,
+      "keyFiles": []
+    },
+    "temp_downloads_notice": {
+      "path": "temp_downloads_notice",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1776582156783,
+      "keyFiles": []
+    }
+  },
+  "hotPaths": [],
+  "userDirectives": []
+}

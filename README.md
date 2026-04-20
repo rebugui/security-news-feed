@@ -3,33 +3,26 @@
 [![Version](https://img.shields.io/badge/version-1.1.0-blue)](https://github.com/rebugui/security-news-feed)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-> 한국 보안 뉴스 소스 11곳에서 뉴스를 자동으로 수집하고, Gemini API로 요약한 후 Notion과 Tistory에 발행하는 모듈
+> 한국/국제 보안 뉴스 소스 13곳에서 뉴스를 자동으로 수집하고, GLM-4.7 API로 요약한 후 Notion과 Tistory에 발행하는 모듈
 
 ## 개요
 
-한국 보안 뉴스 소스 11곳에서 뉴스를 자동으로 수집하고, Gemini API로 요약한 후 Notion과 Tistory에 발행하는 모듈입니다.
+한국/국제 보안 뉴스 소스 13곳에서 뉴스를 자동으로 수집하고, GLM-4.7 API (Z.ai)로 요약한 후 Notion과 Tistory에 발행하는 모듈입니다.
 
-**주기**: 3시간마다 자동 실행 (cron)
+**주기**: 1시간마다 자동 실행
 
 ## 워크플로우
 
 ```
-11개 보안 뉴스 소스 병렬 크롤링
-    ├─ KRCERT (한국인터넷진흥원)
-    ├─ NCSC (국가사이버안보센터)
-    ├─ Boho (보호나라)
-    ├─ Dailysec
-    ├─ KISA
-    ├─ K-shield
-    ├─ KrCert
-    ├─ Notice
-    ├─ Boho2
-    ├─ Krcert2
-    └─ Ncsc2
+13개 보안 뉴스 소스 병렬 크롤링
+    ├─ KRCERT, NCSC, Boho, DailySecu
+    ├─ BoanNews, AhnLab, Igloo, KISA
+    ├─ SKShieldus, Google News, arXiv
+    ├─ HackerNews, Hadaio
     ↓
 키워드 기반 필터링 (보안 관련 키워드)
     ↓
-Gemini API 요약 (140자 요약 + 상세 분석)
+GLM-4.7 API 요약 (140자 요약 + 상세 분석)
     ↓
 Notion 데이터베이스 저장
     ↓
@@ -61,7 +54,7 @@ keywords = [
 ]
 ```
 
-### 3. Gemini API 요약 (Summarization)
+### 3. GLM-4.7 API 요약 (Summarization)
 **요약 구조**:
 ```
 [140자 요약]
@@ -93,21 +86,18 @@ pip install -r requirements.txt
 ```
 
 ### 3. 환경 변수 설정
-```bash
-cp .env.example .env
-```
 
-`.env` 파일 수정:
+`~/.openclaw/workspace/.env` 파일 수정:
 ```bash
-# Gemini API
-GEMINI_API_KEY=your_gemini_api_key
+# GLM API (Z.ai)
+SECURITY_NEWS_GLM_API_KEY=your_glm_api_key
+GLM_BASE_URL=https://api.z.ai/api/coding/paas/v4
 
 # Notion API
 NOTION_API_KEY=your_notion_api_key
-NOTION_DATABASE_ID=your_database_id
+SECURITY_NEWS_DATABASE_ID=your_database_id
 
 # Tistory API (선택)
-TISTORY_ACCESS_TOKEN=your_access_token
 TISTORY_BLOG_NAME=your_blog_name
 ```
 

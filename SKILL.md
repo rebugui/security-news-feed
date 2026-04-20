@@ -1,36 +1,38 @@
 ---
 name: security-news-feed
-version: 1.1.0
-description: Automated security news aggregation and summarization module. Collects news from 11 Korean security sources (KRCERT, NCSC, Boho, Dailysec, etc.) → summarizes with Gemini API → publishes to Notion/Tistory. Runs hourly. Use when you want to monitor security news, collect Korean security updates, or aggregate news feeds. Triggers: "보안 뉴스", "security news", "뉴스 수집".
+version: 2.2.0
+description: Automated security news aggregation and summarization module. Collects news from 13 Korean/international security sources (KRCERT, NCSC, Boho, Dailysecu, BoanNews, AhnLab, etc.) → summarizes with GLM-4.7 API (Z.ai) → publishes to Notion/Tistory. Runs hourly. Use when you want to monitor security news, collect Korean security updates, or aggregate news feeds. Triggers: "보안 뉴스", "security news", "뉴스 수집".
 ---
 
 # Security News Module
 
 ## 개요
 
-한국 보안 뉴스 소스 11곳에서 뉴스를 자동으로 수집하고, Gemini API로 요약한 후 Notion과 Tistory에 발행하는 모듈입니다.
+한국 보안 뉴스 소스 13곳에서 뉴스를 자동으로 수집하고, GLM-4.7 API (Z.ai)로 요약한 후 Notion과 Tistory에 발행하는 모듈입니다.
 
 **주기**: 1시간마다 자동 실행
 
 ## 워크플로우
 
 ```
-11개 보안 뉴스 소스 병렬 크롤링
-    ├─ KRCERT (한국인터넷진흥원)
-    ├─ NCSC (국가사이버안보센터)
-    ├─ Boho (보호나라)
-    ├─ Dailysec
-    ├─ KISA
-    ├─ K-shield
-    ├─ KrCert
-    ├─ Notice
-    ├─ Boho2
-    ├─ Krcert2
-    └─ Ncsc2
+13개 보안 뉴스 소스 병렬 크롤링
+    ├─ KRCERT (한국인터넷진흥원) - RSS
+    ├─ NCSC (국가사이버안보센터) - Selenium
+    ├─ Boho (보호나라) - Selenium
+    ├─ DailySecu (데일리시큐) - requests
+    ├─ BoanNews (보안뉴스) - requests
+    ├─ AhnLab (안랩 ASEC) - requests
+    ├─ Igloo (이글루시큐리티) - requests
+    ├─ KISA (가이드라인) - requests
+    ├─ SKShieldus (SK쉴더스) - Selenium
+    ├─ Google News - RSS
+    ├─ arXiv - API
+    ├─ HackerNews - API
+    └─ Hadaio - RSS
     ↓
 키워드 기반 필터링 (보안 관련 키워드)
     ↓
-Gemini API 요약 (140자 요약 + 상세 분석)
+GLM-4.7 API 요약 (140자 요약 + 상세 분석)
     ↓
 Notion 데이터베이스 저장
     ↓
@@ -40,21 +42,23 @@ Tistory 블로그 발행 (선택)
 ## 주요 기능
 
 ### 1. 뉴스 수집 (Collection)
-**11개 한국 보안 뉴스 소스**:
+**13개 한국/국제 보안 뉴스 소스**:
 
-| 소스 | URL | 타입 |
-|------|-----|------|
-| KRCERT | https://www.krcert.or.kr | 공식 |
-| NCSC | https://www.ncsc.go.kr | 공식 |
-| Boho | https://www.boho.or.kr | 공식 |
-| Dailysec | https://dailysecu.com | 민간 |
-| KISA | https://www.kisa.or.kr | 공식 |
-| K-shield | https://k-shield.or.kr | 공식 |
-| KrCert | https://krcert.or.kr | 공식 |
-| Notice | 내부 소스 | 내부 |
-| Boho2 | https://boho.or.kr | 공식 |
-| Krcert2 | https://www.krcert.or.kr | 공식 |
-| Ncsc2 | https://ncsc.go.kr | 공식 |
+| 소스 | URL | 타입 | 방식 |
+|------|-----|------|------|
+| KRCERT | https://knvd.krcert.or.kr | 공식 | RSS |
+| NCSC | https://www.ncsc.go.kr | 공식 | Selenium |
+| Boho | https://www.boho.or.kr | 공식 | Selenium |
+| DailySecu | https://dailysecu.com | 민간 | requests |
+| BoanNews | https://www.boannews.com | 민간 | requests |
+| AhnLab | https://asec.ahnlab.com | 민간 | requests |
+| Igloo | https://www.igloosec.com | 민간 | requests |
+| KISA | https://www.kisa.or.kr | 공식 | requests |
+| SKShieldus | https://www.skshieldus.com | 민간 | Selenium |
+| Google News | - | 국제 | RSS |
+| arXiv | https://arxiv.org | 국제 | API |
+| HackerNews | https://news.ycombinator.com | 국제 | API |
+| Hadaio | https://hada.io | 국제 | RSS |
 
 ### 2. 키워드 필터링 (Filtering)
 **보안 관련 키워드**:
@@ -67,7 +71,7 @@ keywords = [
 ]
 ```
 
-### 3. Gemini API 요약 (Summarization)
+### 3. GLM-4.7 API 요약 (Summarization)
 **요약 구조**:
 ```
 [140자 요약]
@@ -94,8 +98,8 @@ keywords = [
 
 ### 1. 저장소 클론
 ```bash
-git clone --recursive https://github.com/rebugui/OpenClaw.git
-cd OpenClaw/submodules/security_news_aggregator
+git clone https://github.com/rebugui/security-news-feed.git
+cd security-news-feed
 ```
 
 ### 2. 의존성 설치
@@ -104,21 +108,18 @@ pip install -r requirements.txt
 ```
 
 ### 3. 환경 변수 설정
-```bash
-cp .env.example .env
-```
 
-`.env` 파일 수정:
+`~/.openclaw/workspace/.env` 파일 수정:
 ```bash
-# Gemini API
-GEMINI_API_KEY=your_gemini_api_key
+# GLM API (Z.ai)
+SECURITY_NEWS_GLM_API_KEY=your_glm_api_key
+GLM_BASE_URL=https://api.z.ai/api/coding/paas/v4
 
-# Notion API (선택)
+# Notion API
 NOTION_API_KEY=your_notion_api_key
-NOTION_DATABASE_ID=your_database_id
+SECURITY_NEWS_DATABASE_ID=your_database_id
 
 # Tistory API (선택)
-TISTORY_ACCESS_TOKEN=your_access_token
 TISTORY_BLOG_NAME=your_blog_name
 ```
 
@@ -158,64 +159,48 @@ jobs:
 
 ### `config.py`
 ```python
-# 뉴스 소스 설정
-NEWS_SOURCES = {
-    'krcert': {
-        'url': 'https://www.krcert.or.kr',
-        'type': 'rss',
-        'enabled': True
-    },
-    'ncsc': {
-        'url': 'https://www.ncsc.go.kr',
-        'type': 'web',
-        'enabled': True
-    },
-    # ...
-}
-
-# 키워드 필터
-KEYWORDS = [
-    "취약점", "악성코드", "해킹", "랜섬웨어",
-    "보안", "침해", "공격", "암호화"
-]
-
-# Gemini 설정
-GEMINI_MODEL = "gemini-2.0-flash-exp"
-GEMINI_MAX_TOKENS = 1000
-GEMINI_TEMPERATURE = 0.7
+# LLM API (Z.ai / GLM)
+SECURITY_LLM_API_KEY = os.getenv("SECURITY_NEWS_GLM_API_KEY") or os.getenv("GLM_API_KEY")
+SECURITY_LLM_BASE_URL = os.getenv("GLM_BASE_URL", "https://api.z.ai/api/coding/paas/v4")
+SECURITY_LLM_MODEL = os.getenv("SECURITY_LLM_MODEL", "glm-4.7")
+LLM_CALL_DELAY = 3.0  # API 호출 간 딜레이 (Rate limit 방지)
 
 # Notion 설정
-NOTION_ENABLED = True
-NOTION_DATABASE_ID = "your_database_id"
+NOTION_API_TOKEN = os.getenv("NOTION_API_KEY")
+BOANISSUE_DATABASE_ID = os.getenv("SECURITY_NEWS_DATABASE_ID")
 
 # Tistory 설정
-TISTORY_ENABLED = False
-TISTORY_BLOG_NAME = "your_blog_name"
+TISTORY_BLOG_NAME = os.getenv("TISTORY_BLOG_NAME", "rebugui")
 ```
 
 ## 파일 구조
 
 ```
-security_news_aggregator/
-├── security_news_aggregator.py  # 메인 실행 파일
+security-news-feed/
+├── security_news_aggregator.py  # 메인 실행 파일 (v2.2, Producer-Consumer)
 ├── config.py                    # 설정 파일
-├── .env.example                 # 환경 변수 예시
 ├── requirements.txt             # 의존성
 │
 ├── modules/                     # 기능 모듈
-│   ├── collectors/              # 뉴스 수집기
-│   │   ├── krcert_collector.py
-│   │   ├── ncsc_collector.py
-│   │   └── ...
-│   ├── summarizer.py            # Gemini 요약
-│   ├── notion_publisher.py      # Notion 발행
-│   └── tistory_publisher.py     # Tistory 발행
+│   ├── base_crawler.py          # 크롤러 ABC
+│   ├── llm_handler.py           # GLM API (Z.ai) 요약
+│   ├── notion_handler.py        # Notion CRUD + 중복 체크
+│   ├── publisher_service.py     # Notion/Tistory 발행
+│   ├── log_utils.py             # 구조화 로깅
+│   ├── crawlers/                # 뉴스 수집기 (13개)
+│   │   ├── krcert.py, ncsc.py, boho.py
+│   │   ├── dailysecu.py, boannews.py, ahlab.py
+│   │   ├── igloo.py, kisa.py, skshieldus.py
+│   │   ├── google_news.py, arxiv.py, hackernews.py
+│   │   └── hadaio.py
+│   ├── prompts/                 # LLM 프롬프트 템플릿
+│   └── analysis/                # 키워드 분석
 │
 ├── data/                        # 데이터 저장
-│   └── news_cache.json
+│   └── url_cache.db             # SQLite URL 중복 캐시
 │
 └── logs/                        # 로그
-    └── aggregator.log
+    └── security_aggregator.log
 ```
 
 ## Notion 데이터베이스 설정
@@ -257,7 +242,7 @@ security_news_aggregator/
 ✅ 수집된 뉴스: 169개
 ✅ URL 변환 완료: 137개
 ✅ 키워드 기반 필터링: 169개 처리
-✅ Gemini 요약 완료
+✅ GLM-4.7 요약 완료
 ✅ Notion 저장 완료
 ```
 
@@ -266,19 +251,19 @@ security_news_aggregator/
 ### 뉴스 수집 실패
 ```bash
 # 로그 확인
-tail -f logs/aggregator.log
+tail -f logs/security_aggregator.log
 
-# 특정 소스 테스트
-python security_news_aggregator.py --test krcert
+# 1회 실행 (디버그)
+python security_news_aggregator.py --once --skip-sync
 ```
 
-### Gemini API 오류
+### GLM API 오류 (429 Rate Limit)
 ```bash
 # API 키 확인
-echo $GEMINI_API_KEY
+echo $SECURITY_NEWS_GLM_API_KEY
 
-# API 할당량 확인
-curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp?key=$GEMINI_API_KEY"
+# LLM_CALL_DELAY 증가 (config.py에서 기본 3.0초)
+# 이미 자동 재시도 3회 + 지수 백오프 적용됨
 ```
 
 ### Notion 연결 오류
@@ -291,19 +276,18 @@ curl -X POST https://api.notion.com/v1/databases/{database_id}/query \
 
 ## 의존성
 
-- Python 3.11+
-- Gemini API
-- Notion API (선택)
+- Python 3.9+
+- GLM-4.7 API (Z.ai)
+- Notion API
 - Tistory API (선택)
-- BeautifulSoup4
-- Requests
+- BeautifulSoup4, Requests, Selenium
 
 ## API 키 발급
 
-### Gemini API
-1. https://makersuite.google.com/app/apikey 접속
+### GLM API (Z.ai)
+1. https://open.bigmodel.cn 접속
 2. API 키 생성
-3. 키 복사
+3. `SECURITY_NEWS_GLM_API_KEY`에 설정
 
 ### Notion API (선택)
 1. https://www.notion.so/my-integrations 접속

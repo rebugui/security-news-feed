@@ -128,6 +128,7 @@ class KRCERTCrawler(BaseCrawler):
                                 'url': link_url,
                                 'source': self.source_name,
                                 'category': category_,
+                                'date': posting_date.strftime('%Y-%m-%d') if posting_date else None,
                                 'posting_date': posting_date,
                                 'files': files_to_upload
                             }

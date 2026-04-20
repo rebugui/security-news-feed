@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"python3 -c \\\"import json; data=json.load(open('/Users/rebugui/.openclaw/cron/jobs.json')); [print(f'{j[\\\\\\\"name\\\\\\\"]}: channel={j[\\\\\\\"delivery\\\\\\\"][\\\\\\\"channel\\\\\\\"]} errors={j[\\\\\\\"state\\\\\\...",
+  "error": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"<string>\", line 1, in <listcomp>\nKeyError: 'delivery'\nmorning-briefing: channel=telegram errors=0\nsecurity-news-feed: channel=telegram errors=0\nauto-sec-blogger: channel=telegram errors=0\nkisa-guideline: channel=telegram errors=0\ncapability-evolver: channel=telegram errors=0",
+  "timestamp": "2026-04-19T07:19:28.364Z",
+  "retry_count": 1
+}

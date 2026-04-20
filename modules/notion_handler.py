@@ -507,9 +507,14 @@ def create_notion_page(title, content, url, date, category_, details=None, files
         url = url_cache.normalize_url(url)
     
     try:
+        # date가 None인 경우 기본값으로 오늘 날짜 사용
+        if date is None:
+            date = datetime.datetime.now().strftime('%Y-%m-%d')
+            print(f"[INFO] 날짜가 None이므로 기본값 사용: {date}")
+        
         today = datetime.datetime.now()
         post_date_obj = datetime.datetime.strptime(date, '%Y-%m-%d')
-        if  DATABASE_ID in [BOANISSUE_DATABASE_ID, CVE_DATABASE_ID]:
+        if DATABASE_ID in [BOANISSUE_DATABASE_ID, CVE_DATABASE_ID]:
             if post_date_obj < (today - datetime.timedelta(days=90)):
                 print(f"[SKIP] '{title}'은(는) 90일 이전의 항목이므로 추가하지 않습니다.")
                 return
@@ -517,6 +522,10 @@ def create_notion_page(title, content, url, date, category_, details=None, files
     except ValueError as e:
         print(f"[ERROR] 날짜 형식 오류: {date} - {e}")
         send_slack_message(f"[ERROR] Notion 페이지 생성 중 날짜 형식 오류: {title} - {date} ({e})")
+        return
+    except Exception as e:
+        print(f"[ERROR] 날짜 처리 중 알 수 없는 오류: {date} - {e}")
+        send_slack_message(f"[ERROR] Notion 페이지 생성 중 날짜 처리 오류: {title} - {e}")
         return
     
     headers = {

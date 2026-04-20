@@ -39,7 +39,7 @@ def acquire_lock():
         if LOCK_FD:
             try:
                 LOCK_FD.close()
-            except:
+            except Exception:
                 pass
             LOCK_FD = None
         return False
@@ -51,13 +51,13 @@ def release_lock():
         try:
             fcntl.flock(LOCK_FD.fileno(), fcntl.LOCK_UN)
             LOCK_FD.close()
-        except:
+        except Exception:
             pass
         finally:
             LOCK_FD = None
             try:
                 LOCK_FILE.unlink()
-            except:
+            except Exception:
                 pass
 
 # Import Crawlers
@@ -285,7 +285,7 @@ def process_article_queue_concurrent(publisher_service, stop_event, consumer_id=
             # 큐에서 작업 가져오기
             try:
                 task = GLOBAL_ARTICLE_QUEUE.get(timeout=1)
-            except:
+            except Exception:
                 continue # 큐가 비었으면 continue (stop_event 체크)
 
             processed_count += 1
@@ -306,7 +306,8 @@ def process_article_queue_concurrent(publisher_service, stop_event, consumer_id=
                     if (datetime.now() - t_date).days > 90:
                          should_skip = True
                          skip_reason = f"오래된 기사 (90일 초과, {task_date_str})"
-                except: pass
+                except Exception as e:
+                    logger.debug(f"날짜 파싱 스킵: {e}")
 
             if not should_skip:
                 target_db_id = task.get('database_id', BOANISSUE_DATABASE_ID)
@@ -325,7 +326,8 @@ def process_article_queue_concurrent(publisher_service, stop_event, consumer_id=
                              if os.path.exists(f_info['path']):
                                  os.remove(f_info['path'])
                                  logger.info(f"  🗑️ 로컬 파일 삭제 완료 (Skip Clean): {f_info['name']}")
-                         except: pass
+                         except Exception as e:
+                             logger.debug(f"파일 삭제 스킵: {e}")
                  continue
 
             #1. LLM Summary & Details (2-step generation for better content)
@@ -499,7 +501,7 @@ def start_regular_tasks(publisher_service):
     consumer_threads = []
 
     for i in range(MAX_CONSUMERS):
-        def consumer_worker():
+        def consumer_worker(i=i):
             # Consumer가 즉시 시작하여 큐를 모니터링하고 처리
             logger.info(f"[Consumer #{i+1}] 시작 - 큐 모니터링 중...")
             process_article_queue_concurrent(publisher_service, stop_event, consumer_id=i)

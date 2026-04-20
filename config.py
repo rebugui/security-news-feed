@@ -117,7 +117,7 @@ LLM_CACHE_TTL_HOURS = int(os.getenv("LLM_CACHE_TTL_HOURS", "24"))  # LLM 캐시 
 
 # LLM API 호출 설정
 LLM_API_TIMEOUT = int(os.getenv("LLM_API_TIMEOUT", "180"))  # API 타임아웃 (초)
-LLM_CALL_DELAY = float(os.getenv("LLM_CALL_DELAY", "1.0"))  # API 호출 간 딜레이 (초)
+LLM_CALL_DELAY = float(os.getenv("LLM_CALL_DELAY", "3.0"))  # API 호출 간 딜레이 (초)
 
 
 # ========================

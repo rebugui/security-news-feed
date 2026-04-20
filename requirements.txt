@@ -10,4 +10,4 @@ urllib3
 ollama
 python-dotenv
 aiohttp  # Async HTTP client for performance optimization
-arxiv
+arxiv>=2.0.0

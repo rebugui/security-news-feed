@@ -251,9 +251,6 @@ def call_zai_api(messages: list, model: str = DEFAULT_MODEL, max_retries: int = 
         "messages": messages
     }
 
-    # API 호출 간 딜레이 (Rate limit 방지)
-    time.sleep(LLM_CALL_DELAY)
-
     # 재시도 로직 (지수 백오프)
     last_exception = None
     initial_delay = 1.0
@@ -261,6 +258,10 @@ def call_zai_api(messages: list, model: str = DEFAULT_MODEL, max_retries: int = 
 
     for attempt in range(max_retries):
         try:
+            # 첫 시도에서만 사전 딜레이 적용 (재시도는 개별 백오프 사용)
+            if attempt == 0:
+                time.sleep(LLM_CALL_DELAY)
+
             # 첫 시도가 아닐 때만 재시도 로깅
             if attempt > 0:
                 logger.info(f"[Retry] API 재시도 {attempt + 1}/{max_retries}...")

@@ -80,10 +80,10 @@ class BohoCrawler(BaseCrawler):
             try:
                 # 테이블 로드 대기 (여러 선택자 시도)
                 table_selectors = [
+                    "table tbody tr",
                     "table.board-list tbody tr",
                     "table.tbl_board tbody tr",
-                    "div.board-list table tbody tr",
-                    "table tbody tr"
+                    "div.board-list table tbody tr"
                 ]
                 rows = None
                 for selector in table_selectors:
