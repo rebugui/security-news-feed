@@ -29,8 +29,8 @@ from .prompts.blog_post import SYSTEM_PROMPT as BLOG_SYSTEM, USER_PROMPT_TEMPLAT
 # 설정 및 로깅 설정
 # ========================
 
-DEFAULT_MODEL = "glm-4.7-flash"
-ZAI_API_URL = "https://api.z.ai/api/coding/paas/v4/chat/completions"
+DEFAULT_MODEL = "gemma4-uncensored-agg:e4b"
+ZAI_API_URL = "http://localhost:11434/v1/chat/completions"
 LLM_LOCK = threading.Lock()
 
 # 캐싱 설정
@@ -242,9 +242,7 @@ def call_zai_api(messages: list, model: str = DEFAULT_MODEL, max_retries: int = 
         requests.RequestException: API 호출 실패 (최대 재시도 후)
     """
     headers = {
-        "Content-Type": "application/json",
-        "Accept-Language": "en-US,en",
-        "Authorization": f"Bearer {ZAI_API_KEY}"
+        "Content-Type": "application/json"
     }
     data = {
         "model": model,

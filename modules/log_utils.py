@@ -8,10 +8,10 @@ from typing import Optional
 from pathlib import Path
 from datetime import datetime
 
-# openclaw_logging 경로 추가
-scripts_path = Path.home() / '.openclaw' / 'workspace' / 'scripts'
-if str(scripts_path) not in sys.path:
-    sys.path.insert(0, str(scripts_path))
+# openclaw_logging 경로 추가 (현재 프로젝트 디렉토리)
+project_path = Path(__file__).resolve().parent.parent
+if str(project_path) not in sys.path:
+    sys.path.insert(0, str(project_path))
 
 from openclaw_logging import setup_skill_logger, Metrics, LogContext as _BaseLogContext
 
