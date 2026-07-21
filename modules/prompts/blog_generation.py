@@ -79,14 +79,15 @@ CONTENT_SYSTEM = """
 1. **기본 원칙**: 스타일 속성을 사용하지 마세요
    ```mermaid
    graph TD
-       A[Attacker] --> B[Exploit]
-       B --> C[Compromise]
-       C --> D[Data Exfiltration]
+       A["Attacker"] --> B["Exploit"]
+       B --> C["Compromise"]
+       C --> D["Data Exfiltration"]
    ```
 
-2. **노드 형태**: 기본 네모형 `[ ]` 만 사용
+2. **노드 형태**: 기본 네모형 `[" "]` 만 사용 (큰따옴표로 감싸기)
    - ❌ fill, stroke, stroke-width 등의 style 속성 금지
    - ❌ classDef, class 적용 금지
+   - ⚠️ `&`, `(`, `)`, `<`, `>` 등 특수문자는 반드시 `["텍스트"]` 형식
 
 ### 결론/시사점 (15%)
 - 핵심 요약

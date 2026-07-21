@@ -75,6 +75,11 @@ USER_PROMPT_TEMPLATE = """
    - **시퀀스**: `sequenceDiagram` 사용
    - **상태도**: `stateDiagram-v2` 사용
 
+⚠️ **Mermaid 특수문자 규칙 (절대 위반 금지)**:
+   - 노드 레이블은 반드시 `["레이블"]` 형식으로 큰따옴표 감싸기
+   - `&`, `(`, `)`, `<`, `>`, `#`, `{`, `}`가 레이블에 있으면 깨짐
+   - 예: `A["Command & Control (C2) 접속"]` (O) / `A[Command & Control (C2)]` (X)
+
 **예시 - 공격 흐름도**:
 ```mermaid
 graph TD
